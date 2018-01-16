@@ -8,17 +8,13 @@ docute.init({
         html: '<a href="http://www.calamus.xyz">世界第一帅蒲</a>'
     },
     sidebar: true,
-    //   There will be a toggle button for switching sidebar on and off, to hide this button:
-    //   disableSidebarToggle: true
-    // to show h2 to h3 only
     tocVisibleDepth: 3,
     marked: {
     smartypants: true
-    // ...
   },
     nav: [{
     path: '/',
-    markdown: '## counter\n {{ count }}', // this will be parsed to html first
+    markdown: '## counter\n {{ count }}',
     component: {
       data() {
         return { count: 0 }
@@ -53,8 +49,8 @@ docute.init({
         label: "calamus",
         link:"https://github.com/calamus0427" 
     },{
-      label: 'Hovered!', // the text for tooltip
-      svgId: 'my-icon', // the id of symbol
+      label: 'Hovered!', 
+      svgId: 'my-icon', 
       link: 'http://blah.blah'
     }],
 

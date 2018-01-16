@@ -2,40 +2,19 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <title>Vue-docute</title>
-    <!-- the docute client styles -->
+    <title>文档</title>
     <link rel="stylesheet" href="./docute.css">
+    <link rel="stylesheet" href="https://unpkg.com/docute/dist/theme-github.css" />
 </head>
 
 <body>
     <div id="app"></div>
     <script src="./docute.js"></script>
-    <!-- <script>
-        docute.init({
-            toc: './README.md',
-            sidebar: false,
-            disableSidebarToggle: true,
-            tocVisibleDepth: 3
-        })
-    </script> -->
-    <script id="my-toc" type="text/x-markdown">
-        - [Install](/install) - [Guide](/guide) - [How to do A](/guide/how-to-do-a) - [How to do B](/guide/how-to-do-b)
-    </script>
-    <script>
-        docute.init({
-            toc: document.getElementById('my-toc').textContent,
-            nav: [{
-                title: 'Home',
-                path: '/'
-            }, {
-                title: 'Chinese',
-                path: '/language/chinese'
-            }]
-        })
-    </script>
+    <script src="./config.js"></script>
+    <script src="./prism-python.js"></script>
 </body>
 
 </html>
