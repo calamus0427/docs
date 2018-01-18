@@ -21,17 +21,17 @@ docute.init({
       }
     }
   },{
-        title: "introduce",
+        title: "首页",
         path: "/md/introduce",
         source: '/md/introduce.md',
           },    
           {
-              title: 'Languages', 
+              title: '语言', 
               type: 'dropdown', 
           items: [
-                {title: 'Chinese', path: '/language/chinese'},
-                {title: 'Japanese', path: '/language/japanese'},
-                {title: 'English', path: '/language/english'}
+                {title: '中文', path: '/language/chinese'},
+                {title: '日文', path: '/language/japanese'},
+                {title: '英文', path: '/language/english'}
                 ]}],
    icons: [{
         icon: 'github',

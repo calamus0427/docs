@@ -11,6 +11,8 @@
 </p>
 
 ## 项目演示及基础知识储备
+### 项目演示
+### 基础知识储备
 
 <p class="warning">
   This is for beginners and pros, just enjoy!
@@ -23,6 +25,15 @@
 - Very cute name 🤔
 
 ## 开发环境的安装
+### vue 
+### vue-router
+### element-ui
+### axios
+### sass
+### mock
+### vuex
+### echart
+### other
 
 ```bash
 npm i -g docute-cli
