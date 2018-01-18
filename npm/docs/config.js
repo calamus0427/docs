@@ -2,10 +2,10 @@ docute.init({
     //自定义sidebar
     // toc: './toc.md',
     landing: 'landing.html',
-    home: './README.md',
+    home: './md/introduce.md',
     announcement: {
-        type: "primary", // warning | danger | success | primary
-        html: '<a href="http://www.calamus.xyz">世界第一帅蒲</a>'
+        type: "danger", // warning | danger | success | primary
+        html: '<a href="http://www.calamus.xyz">あやめ</a>'
     },
     sidebar: true,
     tocVisibleDepth: 3,
@@ -29,12 +29,9 @@ docute.init({
               title: 'Languages', 
               type: 'dropdown', 
           items: [
-                {title: 'Chinese',type: 'label', path: '/language/chinese'},
+                {title: 'Chinese', path: '/language/chinese'},
                 {title: 'Japanese', path: '/language/japanese'},
-                {type: 'sep'},
-                {title: 'Chinese',type: 'label', path: '/language/chinese'},
-                {title: 'Japanese', path: '/language/japanese'},
-                {type: 'sep'}
+                {title: 'English', path: '/language/english'}
                 ]}],
    icons: [{
         icon: 'github',
