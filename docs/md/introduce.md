@@ -6,21 +6,21 @@
   <b>——Calamus</b>
   <br><br>
   <a href="https://www.calamus.xyz">
-    <img src="../img/2.jpg" width=200>
-    <img src="../img/tx.jpg" style="margin-left:20px;" width=200>  
+    <img src="../docs/img/2.jpg" width=200>
+    <img src="../docs/img/tx.jpg" style="margin-left:20px;" width=200>  
   </a>
 </p>
 
 ## 项目演示及基础知识储备
 ### 项目演示
 - demo1
-![img](../img/demo1.gif)
+![img](../docs/img/demo1.gif)
 - demo2
-![img](../img/demo2.gif)
+![img](../docs/img/demo2.gif)
 - radar
-![img](../img/radar.gif)
+![img](../docs/img/radar.gif)
 ### 基础知识储备
-![img](../img/vue入门.jpg)
+![img](../docs/img/vue入门.jpg)
 
 #### 需要一定的前端基础
 - html 👻
@@ -33,7 +33,7 @@
   - 接受用户指令时，MVC 可以分成两种方式。一种是通过 View 接受指令，传递给 Controller。
   - 另一种是直接通过controller接受指令。
 <br>
-![img](../img/mvc.png)
+![img](../docs/img/mvc.png)
 - MVP（Model-View-Presenter）:
 MVP 模式将 Controller 改名为 Presenter，同时改变了通信方向。
   - 各部分之间的通信，都是双向的。
