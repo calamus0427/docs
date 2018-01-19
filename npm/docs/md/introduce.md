@@ -6,7 +6,8 @@
   <b>——Calamus</b>
   <br><br>
   <a href="https://www.calamus.xyz">
-    <img src="../img/tx.jpg" width=350>
+    <img src="../img/2.jpg" width=200>
+    <img src="../img/tx.jpg" style="margin-left:20px;" width=200>  
   </a>
 </p>
 
@@ -50,15 +51,15 @@ MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一�
 唯一的区别是，它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然。Angular 和 Ember 都采用这种模式。
   <br>
 ![img](../img/mvvm.png)
-#### 单页面应用(Single-page application)
-一个单页的应用程序（SPA）是一个Web应用程序或网站，通过动态地重写当前页面而不是从服务器加载整个新的网页与用户交互。 
+#### 单页面应用
+一个单页的应用程序(Single-page application)是一个Web应用程序或网站，通过动态地重写当前页面而不是从服务器加载整个新的网页与用户交互。 
 - Angular
 - vue
 - Ember.js
 - Meteor.js
-- ExtJS和
+- ExtJS
 - React
-<br>
+
 - 优点：
   - 具有桌面应用的即时性、网站的可移植性和可访问性。
   - 用户体验好、快，内容的改变不需要重新加载整个页面，web应用更具响应性和更令人着迷。
@@ -76,8 +77,101 @@ MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一�
 ### 组件化
 页面上小到一个按钮都可以是一个单独的文件.vue，这些小组件直接可以像乐高积木一样通过互相引用而组装起来
 ![img](../img/组件化特点.png)
+#### 开发组件
 以element-ui的button组件示例，下图的每一个button都是一个单独的组件，以达到代码的最大化复用：
 ![img](../img/组件示例.gif)
+#### 组件注册
+##### 全局注册
+要注册一个全局组件，可以使用 Vue.component(tagName, options)，注册在跟实例下。
+```
+Vue.component('my-component', {
+  template: '<div>A custom component!</div>'
+})
+```
+##### 局部注册
+你不必把每个组件都注册到全局。你可以通过某个 Vue 实例/组件的实例选项 components 注册仅在其作用域中可用的组件。
+```
+var Child = {
+  template: '<div>A custom component!</div>'
+}
+
+new Vue({
+  // ...
+  components: {
+    // <my-component> 将只在父组件模板中可用
+    'my-component': Child
+  }
+})
+```
+
+#### 封装组件
+** 封装组件的三种方法： **
+##### vue单页面组件
+这种方法常用在vue文件中
+```
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data () {
+    return {
+      msg: '欢迎！'
+    }
+  }
+}
+</script>
+```
+##### script模板
+```
+  <script type="text/x-template" id="myComponent">//注意 type 和id。
+      <div>This is a component!</div>
+  </script>
+  <script>
+    //全局注册组件
+    Vue.component('my-component',{
+        template: '#myComponent'
+    })
+
+    new Vue({
+        el: '#app'
+    })
+  </script>
+```
+##### html模板
+```
+  <template id="myComponent">
+      <div>This is a component!</div>
+  </template>
+  
+  <script>
+    Vue.component('my-component',{
+        template: '#myComponent'
+    })
+    new Vue({
+        el: '#app'
+    })
+  </script>
+```
+或者
+```
+    <script>
+    var myComponent = 
+            `<div>This is a component!</div>
+             <p>----Calamus</p>`;
+    Vue.component('my-component',{
+        template: myComponent
+    })
+    new Vue({
+        el: '#app'
+    })
+  </script>
+```
+
 ### vue声明周期
 ### 和其他框架的对比
 ## vue插件
