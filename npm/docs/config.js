@@ -1,7 +1,7 @@
 docute.init({
     //自定义sidebar
     // toc: './toc.md',
-    landing: "./md/introduce.md",
+    landing: "landing.html",
     home: './md/introduce.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
