@@ -6,7 +6,7 @@
   <b>——Calamus</b>
   <br><br>
   <a href="https://www.calamus.xyz">
-    <img src="../docs/img/2.jpg" width=200>
+    <img src="https://github.com/calamus0427/vue-docute/blob/master/docs/img/2.jpg" width=200>
     <img src="../docs/img/tx.jpg" style="margin-left:20px;" width=200>  
   </a>
 </p>
