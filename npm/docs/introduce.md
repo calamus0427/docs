@@ -6,21 +6,21 @@
   <b>——Calamus</b>
   <br><br>
   <a href="https://www.calamus.xyz">
-    <img src="../img/2.jpg" width=200>
-    <img src="../img/tx.jpg" style="margin-left:20px;" width=200>  
+    <img src="./img/2.jpg" width=200>
+    <img src="./img/tx.jpg" style="margin-left:20px;" width=200>  
   </a>
 </p>
 
 ## 项目演示及基础知识储备
 ### 项目演示
 - demo1
-![img](./img/demo1.gif)
+![img](../img/demo1.gif)
 - demo2
-![img](./img/demo2.gif)
+![img](../img/demo2.gif)
 - radar
-![img](./img/radar.gif)
+![img](../img/radar.gif)
 ### 基础知识储备
-![img](./img/vue入门.jpg)
+![img](../img/vue入门.jpg)
 
 #### 需要一定的前端基础
 - html 👻
