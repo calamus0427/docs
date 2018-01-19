@@ -2,7 +2,7 @@ docute.init({
     //自定义sidebar
     // toc: './toc.md',
     landing: "landing.html",
-    home: './md/introduce.md',
+    home: './introduce.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
         html: '<a href="http://www.calamus.xyz">あやめ</a>'
@@ -22,8 +22,8 @@ docute.init({
     }
   },{
         title: "首页",
-        path: "/md/introduce",
-        source: '/md/introduce.md',
+        path: "/introduce",
+        source: '/introduce.md',
           },    
           {
               title: '语言', 
