@@ -20,9 +20,6 @@
 - radar
 ![img](../img/radar.gif)
 ### 基础知识储备
-<p class="danger">
-  从入门到女装？？？
-</p>
 ![img](../img/vue入门.jpg)
 
 #### 需要一定的前端基础
@@ -77,7 +74,6 @@ MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一�
 ### 组件化
 页面上小到一个按钮都可以是一个单独的文件.vue，这些小组件直接可以像乐高积木一样通过互相引用而组装起来
 ![img](../img/组件化特点.png)
-#### 开发组件
 以element-ui的button组件示例，下图的每一个button都是一个单独的组件，以达到代码的最大化复用：
 ![img](../img/组件示例.gif)
 #### 组件注册
@@ -171,48 +167,236 @@ export default {
     })
   </script>
 ```
+#### 开发组件
+##### 安装vue
+- script标签导入
+```
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+- vue-cli安装
+```npm
+  # 全局安装 vue-cli
+  $ npm install --global vue-cli
+```
+```
+  # 创建一个基于 webpack 模板的新项目
+  $ vue init webpack my-project
+```
+<p class="danger">
+  注意：一些eslink e2e等工具是语法检查用的，建议最开始关闭，不然比较麻烦
+</p>
+![img](../img/vue-cli.png)
+```
+  # 安装依赖
+  $ cd my-project
+  $ npm install
+```
+```
+  # 运行
+  $ npm run dev
+```
+```
+  # 打包编译
+  $ npm run build
+```
+<p class="danger">
+  注意：build之后出现js、css等资源加载404问题，是webpack配置相对路径错误导致,路径给为 './'即可
+</p>
+![img](../img/build.png)
+<p class="danger">
+  注意：build之后出现font等字体文件加载错误，也是webpack配置问题，修改build->webpack.base.conf.js 里css-loader的limit值，比你的font文件大即可
+</p>
+![img](../img/limit.png)
 
-### vue声明周期
+
+- bower安装
+```
+  $ bower install vue
+```
+##### 组件间通信
+###### 父子组件通信
+###### 兄弟组件通信
+### vue生命周期
+![img](../img/vue-life.png)
+![img](../img/vue-life-js.png)
 ### 和其他框架的对比
+#### react
+- 相同点：
+  - React采用特殊的JSX语法，Vue.js在组件开发中也推崇编写.vue特殊文件格式，对文件内容都有一些约定，两者都需要编译后使用。
+  - 中心思想相同：一切都是组件，组件实例之间可以嵌套。
+  - 都提供合理的钩子函数，可以让开发者定制化地去处理需求。
+  - 都不内置列数AJAX，Route等功能到核心包，而是以插件的方式加载。在组件开发中都支持mixins的特性。
+- 不同点：
+  - React依赖Virtual DOM,而Vue.js使用的是DOM模板。React采用的Virtual DOM会对渲染出来的结果做脏检查。
+  - Vue.js在模板中提供了指令，过滤器等，可以非常方便，快捷地操作DOM。
+
+#### angular
+- 相同点：
+  - 都支持指令：内置指令和自定义指令。
+  - 都支持过滤器：内置过滤器和自定义过滤器。
+  - 都支持双向数据绑定。
+  - 都不支持低端浏览器。
+- 不同点：
+  - AngularJS的学习成本高，比如增加了Dependency Injection特性，而Vue.js本身提供的API都比较简单、直观。
+  - 在性能上，AngularJS依赖对数据做脏检查，所以Watcher越多越慢。Vue.js使用基于依赖追踪的观察并且使用异步队列更新。所有的数据都是独立触发的。对于庞大的应用来说，这个优化差异还是比较明显的。
+## vue+element开发管理后台示例
 ## vue插件
 ### vue-router
+```javascript
+  // 使用
+  import VueRouter from "vue-router";
+  import router from "./router/index.js";
+```
+```javascript
+  // 示例
+  import yourVies from "../views/index"
+  export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: "index",
+      component: index,
+            children: [
+              {
+                path:"/text",
+                name:"text",
+                component:text
+              }]
+    },      {
+        path:'/error',
+        name: 'error',
+        component: code404
+      },
+      //一定要放到最后
+          {
+      path: "*",
+      redirect: "/error"
+    }]
+  })
+```
 ### element-ui
+#### 安装
+- cdn引入
+```
+<!-- 引入样式 --> <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+<!-- 先引入 Vue --> <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 --> <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+```
+- npm安装
+```
+  # 安装
+  $ npm i element-ui -S
+```
+```
+//使用 index.js
+  import ElementUI from 'element-ui'
+  import 'element-ui/lib/theme-chalk/index.css'
+  Vue.use(ElementUI)
+```
+示例：
+![img](../img/element.png)
 ### axios
+```
+  # 安装
+  $ npm install axios --save
+```
+```javascript
+  //使用
+  // index.js
+  import axios from 'axios'
+  Vue.prototype.$http = axios
+  // 全局配置示例axios.js
+  axios.defaults.timeout = 5000 ;
+  axios.defaults.baseURL = "http://66.112.214.33"
+  axios.defaults.baseURL = "";
+  axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+  axios.defaults.transformRequest = [function(param) {
+        let ret = "";
+        for (let it in param) {
+          ret +=
+            encodeURIComponent(it) + "=" + encodeURIComponent(param[it]) + "&";
+        }
+        ret = ret.slice(0, ret.length - 1);
+        return ret;
+      }];
+  // 使用示例
+  this.$http.post('url',data).then(
+    (successData) => {
+      this.$set(this.data,"url",successData.data.url);
+      successData.data)
+      console.log("success",this.data,"||",successData.data)
+      },
+    (failData) => {console.log("fail",failData)}
+          );
+```
 ### sass
+![img](../img/sass.gif)
+CSS预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。
+- sass
+- less
+- Stylus
+#### 安装 vue-sass/scss
+```
+  $ npm install node-sass --save-dev
+  $ npm install sass-loader --save-dev
+```
+vue项目中使用sass
+<p class="warning">
+  注意：sass 和 scss 的语法区别
+</p>
+```
+  <style scoped lang="sass"></style>
+```
+  其他地方用sass需要编译成浏览器能解读的css才能正常使用，推荐koala软件
 ### mock
+```
+  # 安装
+  $ npm install mockjs
+```
+```javascript
+  //示例
+  Mock.mock("mock_table", "post",function(options) {
+  console.log("mock", options);
+  return Mock.mock({
+     'list|10-20' : [{
+        loginName: "@name",
+        msgName:"@name",
+        title:"@name",
+        "id|1-100": 100,
+        "status|1-13": 1,
+        "poicyType|1-3":1,
+        color: "@color",
+        date: "@date('yyyy-MM-dd')",
+        email: "@email",
+        datetime: "@time",
+        // 'sex':Random.sex(),
+        range: "@range",
+        character: "@character",
+        float: "@float",
+        int: "@int",
+        boolean: "@boolean",
+        img: "@image('40x40', '#00405d', '#FFF', 'coocaa')",
+        iconPath: "@dataImage('50x40','coocaa')",
+        url: "@url",
+        "string|1-10": "★",
+        "weekday|1": ["周一", "周二", "周三", "周四", "周五", "周六", "周天"]
+  }]});
+});
+```
 ### vuex
+组件交互状态管理包，简单的父子组件通信需求不高的可以暂时不用这个
+```
+  # 安装
+  $ npm install vuex --save
+```
 ### echart
-### others
-
-```bash
-npm i -g docute-cli
-
-docute init ./docs
-docute
+```
+  # 安装
+  $ npm install echarts -S
 ```
 
-For detailed usage please head to https://docute.js.org 😎
-
-
-- [koel](https://koel.phanan.net/docs): 🎵 Music streaming app that works.
-- [sao](https://sao.js.org/): ⚔️ Futuristic scaffolding tool.
-- [service-mocker](https://service-mocker.js.org/): 🚀 The next generation front-end API mocking framework.
-- [vuejs-component-style-guide](https://pablohpsilva.github.io/vuejs-component-style-guide/#/): Vue component style guide
-- [vue-scrollto](https://rigor789.github.io/vue-scrollto/#/): Vue scroll-to directive
-- [SAM Pattern (Korean)](https://changjoo-park.github.io/SAM.js-korean/#/): SAM Pattern docs in Korean 
-- [EverMonkey](http://monkey.yoryor.top/#/): VS Code Extension for Evernote.
-- [finger-mover](https://fmover.hcysun.me/#/): A motion effect library that integrates Fingerd and Moved
-- [lass](https://lass.js.org/): Lass scaffolds a modern package boilerplate for node
-- [telegraf](http://telegraf.js.org/): 📡 Modern Telegram bot framework for Node.js
-- Feel free to add yours here :)
-
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
+### others
+富文本编辑器vue-editor2，代码编辑器vue-codemirror，markdown编辑器vue-markdown等
 ## 写文档
 ### vue-docute
 - 不需要服务器端，完全静态网站
@@ -237,21 +421,46 @@ cd docute
 npm run dev
 # then edit files in ./src dir and save to reload
 ```
+## 前端调试
+### chrome 开发者工具
+### Fiddler/charles
+### 跨平台调试
 
 ## 前端测试
-
-`docute` wouldn't exist if it wasn't for excellent prior art, docute is inspired by these projects:
-
-- [flatdoc](https://github.com/rstacruz/flatdoc)
-- [docsify](https://github.com/QingWei-Li/docsify)
-- [vue.js](https://vuejs.org/)
+### 单元测试
+#### Jasmine
+#### Mocha
+#### Chai
+#### Sinon
+### 自动化单元测试
+#### Karma
+### 基准测试
+#### Benchmark.js
+### 代码覆盖率测试
+#### Istanbul
 
 ## 性能优化
-
-**docute** © [EGOIST](https://github.com/egoist), Released under the [MIT](https://egoist.mit-license.org/) License.<br>
-Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/docute/contributors)).
-
-> [egoistian.com](https://egoistian.com) · GitHub [@egoist](https://github.com/egoist) · Twitter [@_egoistlily](https://twitter.com/_egoistlily)
+### 前端常用chrome插件
+#### FE
+![img](../img/fe.png)
+#### Vue devtools
+![img](../img/vue-tool.png)
+### 性能优化工具
+#### Yslow
+#### PageSpeen
+#### WebPagetest
+### 加载优化
+#### vue的懒加载
+### SEO优化
 
 
 ## 部署和打包
+### gulp
+### grunt
+### webpack
+
+
+
+**docute** © [EGOIST](https://github.com/egoist), Released under the [MIT](https://egoist.mit-license.org/) License.<br>
+Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/docute/contributors)).
+> [calamus.xyz](https://calamus.xyz) · GitHub [@calamus0427](https://github.com/calamus0427) 
