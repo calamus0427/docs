@@ -472,7 +472,118 @@ Vue.component("ra-example",{
   - AngularJS的学习成本高，比如增加了Dependency Injection特性，而Vue.js本身提供的API都比较简单、直观。
   - 在性能上，AngularJS依赖对数据做脏检查，所以Watcher越多越慢。Vue.js使用基于依赖追踪的观察并且使用异步队列更新。所有的数据都是独立触发的。对于庞大的应用来说，这个优化差异还是比较明显的。
 ## vue+element开发管理后台示例
+![img](./img/Vue+element管理后台.jpg)
+
 ![img](./img/demo1.gif)
+
+- ### 安装依赖
+    - vue
+    - vue-router
+    - element
+- ### 项目整体布局
+
+布局如下图：
+
+![img](./img/layout.png)
+
+简单实现如下：
+
+![img](./img/layout-js.png)
+
+Aside等空间就用自己单独写的组件来拼接成一个完整的单页面应用
+main放项目展示内容，通过左侧nav点击链接router来控制展示内容
+
+![img](./img/layout-cl.png)
+
+- ### 开发菜单栏并设置路由
+
+期望效果：
+
+![img](./img/cl-nav-show.gif)
+
+实现方案：采用element的el-menu组件设置自己的导航菜单
+注意router属性为true即表示index值为路由跳转路径；
+
+![img](./img/el-nav.png)
+
+路由表基本配置：
+```javascript
+    //main.js启用vue-router
+    import VueRouter from "vue-router";
+    import router from "./router/index.js";
+
+    new Vue({
+        el: "#app",
+        router,
+        store,
+        template: "<App></App>",
+        components: { App }
+        });
+```
+```javascript
+    //配置基本路由信息router
+    import yourViews from "../views/index"
+    // ......
+
+    export default new Router({
+    routes: [
+        {
+        path: '/',
+        name: "index",
+        component: index,
+                children: [
+                {
+                    path:"/children",
+                    name:"children",
+                    component:children
+                }]
+        },{
+            path:'/error',
+            name: 'error',
+            component: code404
+        },
+        //一定要放到最后
+            {
+        path: "*",
+        redirect: "/error"
+        }]
+    })
+```
+- ### 开发常用组件
+    - #### 介绍一个表单选择组件
+
+    demo展示：
+
+    ![img](./img/choose-table.gif)
+
+    实现：
+
+    组件封装：
+
+    ![img](./img/ra-table-component.png)
+
+    父页面中调用该组件：
+
+    ![img](./img/ra-model.png)
+   
+    
+- ### 根据功能需求完成具体页面
+    - 富文本编辑器
+    ![img](./img/editor.gif)
+    - markdown编辑器
+    ![img](./img/markdown.gif)
+    - 代码编辑器
+    ![img](./img/code.png)
+    - todolist
+    ![img](./img/todo.gif)
+    - 上传文件
+    ![img](./img/uploa.gif)
+    
+- ### 打包部署
+```
+    $ npm run build
+```
+
 ## vue插件
 ### vue-router
 ```javascript
