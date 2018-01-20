@@ -694,7 +694,7 @@ vue项目中使用sass
   <style scoped lang="sass"></style>
 ```
   其他地方用sass需要编译成浏览器能解读的css才能正常使用，推荐koala软件
-### 
+### mock
 生成随机数据,拦截Ajax 请求 开始 前后端分离 让前端攻城师独立于后端进行开发。 增加单元测试的真实性 通过随机数据,模拟各种场景.
 - mockjs
 ```
