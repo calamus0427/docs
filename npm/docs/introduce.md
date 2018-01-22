@@ -887,7 +887,7 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
     import 'echarts/lib/component/title'
 ```
 
-### others
+### [others](http://www.cnblogs.com/calamus/p/8242446.html)
 富文本编辑器vue-editor2，代码编辑器vue-codemirror，markdown编辑器vue-markdown等
 
 ## 写文档
@@ -975,11 +975,13 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 #### Istanbul
 
 ## 性能优化
-### 前端常用chrome插件
+### [前端常用chrome插件](http://www.cnblogs.com/calamus/p/7434741.html)
 #### FE
 ![img](./img/fe.png)
 #### Vue devtools
 ![img](./img/vue-tool.png)
+#### JSON-handle
+![img](./img/json-handle.png)
 ### 性能优化工具
 #### Yslow
 YSlow是一款基于FireFox的插件，这个插件可以分析网站的页面，并告诉你为了提高网站性能，如何基于某些规则而进行优化。
