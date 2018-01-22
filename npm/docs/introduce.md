@@ -712,7 +712,7 @@ vue项目中使用sass
   <style scoped lang="sass"></style>
 ```
   在vue组件中我们我们经常需要给style添加scoped来使得当前样式只作用于当前组件的节点。添加scoped之后，实际上vue在背后做的工作是将当前组件的节点添加一个像data-v-1233这样唯一属性的标识，当然也会给当前style的所有样式添加[data-v-1233]这样的话，就可以使得当前样式只作用于当前组件的节点。但是我们需要注意的是如果我们添加了子组件，同样的，如果子组件也用scoped标识了，那么在父组件中是不能设置子组件中的节点的。若父组件有scoped，子组件没有设置，同样，也是不能在父组件中设置子组件的节点的样式的，因为父组件用了scoped,那么父组件中style设置的样式都是唯一的了，不会作用与其他的组件样式。
-  
+
   其他地方用sass需要编译成浏览器能解读的css才能正常使用，推荐koala软件
 
 
@@ -891,30 +891,68 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 富文本编辑器vue-editor2，代码编辑器vue-codemirror，markdown编辑器vue-markdown等
 
 ## 写文档
-### vue-docute
+### [vue-docute](https://docute.js.org/#/home)
 - 不需要服务器端，完全静态网站
 - 不需要编译， markdown 文件是访问的时候自动解析
 - 部署方便，比如 github pages 或者作为一个 index.html 部署到任何地方
 - 方便定制，可以用于很大的文档也可以只有一个 README.md
 - 默认主题非常优雅
 ![img](./img/1.gif)
+- 安装
+    - npm 安装
+    - script标签
+```
+    $ npm i -g docute-cli
+    $ docute init ./docs
+    $ docute ./docs
+    # 然后打开 http://localhost:8080 查看运行结果
+```  
+```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>My Awesome Doc</title>
+    <!-- the docute client styles -->
+    <link rel="stylesheet" href="https://unpkg.com/docute/dist/docute.css">
+    </head>
+    <body>
+    <div id="app"></div>
+    <!-- load the docute client library -->
+    <script src="https://unpkg.com/docute/dist/docute.js"></script>
+    <!-- bootstrap your docute app! -->
+    <script>
+        docute.init()
+    </script>
+    </body>
+    </html>
+```
+安装好之后的文件目录：
+
 ![img](./img/5-1.png)
+
 ![img](./img/5-2.png)
+
+设置nav导航：
+
 ![img](./img/5-3.png)
+
 ![img](./img/5-4.png)
+
+自定义设置左侧导航栏：
+
 ![img](./img/5-5.png)
 ![img](./img/5-6.png)
+
+设置头部右侧的图标和跳转链接：
+
 ![img](./img/5-7.png)
 ![img](./img/5-8.png)
 ![img](./img/5-9.png)
-The development setup is basically webpack + vue:
 
-```bash
-cd docute
-npm run dev
-# then edit files in ./src dir and save to reload
-```
-### 其他
+### other
 #### [swagger](https://swagger.io/)
 是一个REST APIs文档生成工具，可以在许多不同的平台上从代码注释中自动生成，开源，支持大部分语言，社区好。
 
