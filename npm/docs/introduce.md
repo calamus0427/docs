@@ -14,11 +14,17 @@
 ## 项目演示及基础知识储备
 ### 项目演示
 - demo1
+
 ![img](./img/demo1.gif)
+
 - demo2
+
 ![img](./img/demo2.gif)
+
 - radar
+
 ![img](./img/radar.gif)
+
 ### 准备工作
 
 - 一定的前端基础
@@ -30,6 +36,7 @@
     - 编辑器：webstorm、vscode等......
 
 ![img](./img/vue入门.jpg)
+
 ## vue特点
  是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
 #### MVVM模型
@@ -37,7 +44,9 @@
   - 接受用户指令时，MVC 可以分成两种方式。一种是通过 View 接受指令，传递给 Controller。
   - 另一种是直接通过controller接受指令。
 <br>
+
 ![img](./img/mvc.png)
+
 - MVP（Model-View-Presenter）:
 MVP 模式将 Controller 改名为 Presenter，同时改变了通信方向。
   - 各部分之间的通信，都是双向的。
@@ -46,12 +55,16 @@ MVP 模式将 Controller 改名为 Presenter，同时改变了通信方向。
 
   - View 非常薄，不部署任何业务逻辑，称为"被动视图"（Passive View），即没有任何主动性，而 Presenter非常厚，所有逻辑都部署在那里。
   <br>
+
 ![img](./img/mvp.png)
+
 - MVVM（Model-View-ViewModel）:
 MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一致。
 唯一的区别是，它采用双向绑定（data-binding）：View的变动，自动反映在 ViewModel，反之亦然。Angular 和 Ember 都采用这种模式。
   <br>
+
 ![img](./img/mvvm.png)
+
 #### 单页面应用
 一个单页的应用程序(Single-page application)是一个Web应用程序或网站，通过动态地重写当前页面而不是从服务器加载整个新的网页与用户交互。 
 - Angular
@@ -74,12 +87,18 @@ MVVM 模式将 Presenter 改名为 ViewModel，基本上与 MVP 模式完全一�
 
 ### 双向数据绑定
 比如你改变一个输入框 Input 标签的值，会自动同步更新到页面上其他绑定该输入框的组件的值
+
 ![img](./img/双向绑定数据.gif)
+
 ### 组件化
 页面上小到一个按钮都可以是一个单独的文件.vue，这些小组件直接可以像乐高积木一样通过互相引用而组装起来
+
 ![img](./img/组件化特点.png)
+
 以element-ui的button组件示例，下图的每一个button都是一个单独的组件，以达到代码的最大化复用：
+
 ![img](./img/组件示例.gif)
+
 #### 组件注册
 ##### 全局注册
 要注册一个全局组件，可以使用 Vue.component(tagName, options)，注册在跟实例下。
@@ -180,6 +199,7 @@ export default {
 - vue-cli安装
 
 ![img](./img/vue-cli-npm.png)
+
 ```npm
   # 全局安装 vue-cli
   $ npm install --global vue-cli
@@ -191,7 +211,9 @@ export default {
 <p class="danger">
   注意：一些eslink e2e等工具是语法检查用的，建议最开始关闭，不然比较麻烦
 </p>
+
 ![img](./img/vue-cli.png)
+
 ```
   # 安装依赖
   $ cd my-project
@@ -204,6 +226,7 @@ export default {
 运行之后打开localhost:8080,即时vue安装好的页面了
 
 ![img](./img/vue-index.png)
+
 ```
   # 打包编译
   $ npm run build
@@ -211,13 +234,17 @@ export default {
 打包成功之后项目目录下会多出dist文件夹，即是打包编译好的项目文件
 
 ![img](./img/npm-file.png)
+
 <p class="danger">
   注意：build之后出现页面空白，打开调试发现js、css等资源加载404，是webpack配置相对路径错误导致,如图路径给为 './'即可
 </p>
+
 ![img](./img/build.png)
+
 <p class="danger">
   注意：build之后出现font等字体文件加载错误，也是webpack配置问题，修改build->webpack.base.conf.js 里css-loader的limit值，比你的font文件大即可
 </p>
+
 ![img](./img/limit.png)
 
 
@@ -227,7 +254,9 @@ export default {
 ```
 ##### 开发一个canvas组件示例
 [效果展示：](https://jsfiddle.net/calamus/aaphrwjc/)
+
 ![img](./img/canvas.gif)
+
 ```
   <template>
       <canvas id="canvas">
@@ -427,7 +456,9 @@ export default {
   </style>
 ```
 在线运行示例：
+
 ![img](./img/canvas-js.gif)
+
 ##### 组件间通信
 ###### 父子组件通信
 子组件接受父组件的传值通过设置props
@@ -461,7 +492,35 @@ Vue.component("ra-example",{
 ###### 兄弟组件通信
 兄弟组件之间传值可以通过建立空的vue文件作为中间件来传值
 但如果涉及到比较复杂的交互这种方法显然比较麻烦，所有可以用到vuex：vue的状态管理插件，但这个插件的使用要慎重
+
+###### 组件三要素
+- prop
+<p class="warning">
+    prop需要转化成对应的kebab-case (短横线分隔式命名)
+</p>
+组件实例的作用域是孤立的。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。父组件的数据需要通过 prop 才能下发到子组件中
+
+- 自定义事件
+
+- slot
+```
+    <app>
+    <app-header></app-header>
+    <app-footer></app-footer>
+    </app>
+```
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为内容分发 (即 Angular 用户熟知的“transclusion”)。Vue.js 实现了一个内容分发 API，参照了当前 Web Components 规范草案，使用特殊的 <slot> 元素作为原始内容的插槽。
+```vue
+    <div>
+    <h2>我是子组件的标题</h2>
+    <slot>
+        {{slot作用域}}
+    </slot>
+    </div>
+```
+
 ### vue生命周期
+
 ![img](./img/vue-life.png)
 
 ![img](./img/vue-life-js.png)
@@ -469,6 +528,7 @@ Vue.component("ra-example",{
 [生命周期钩子函数](https://jsfiddle.net/calamus/0sf6rnm1/)
 
 ![img](./img/life-content.png)
+
 <p class="warning">
 Vue.nextTick():
     在 Vue 生命周期的 created() 钩子函数进行的 DOM 操作一定要放在Vue.nextTick() 的回调函数中。原因是什么呢，原因是在 created() 钩子函数执行的时候 DOM 其实并未进行任何渲染，而此时进行 DOM 操作无异于徒劳，所以此处一定要将 DOM 操作。
@@ -496,6 +556,7 @@ Vue.nextTick():
   - AngularJS的学习成本高，比如增加了Dependency Injection特性，而Vue.js本身提供的API都比较简单、直观。
   - 在性能上，AngularJS依赖对数据做脏检查，所以Watcher越多越慢。Vue.js使用基于依赖追踪的观察并且使用异步队列更新。所有的数据都是独立触发的。对于庞大的应用来说，这个优化差异还是比较明显的。
 ## vue+element开发管理后台示例
+
 ![img](./img/Vue+element管理后台.jpg)
 
 ![img](./img/demo1.gif)
@@ -600,6 +661,7 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
     最后可以按照需要封装成组件，或者直接<i></i>标签的方式导入
 
     ![img](./img/icon.gif)
+
 以阿里的iconfont为例，添加喜欢的图标为自己的项目，下载后修改css文件，最后在需要的地方引入css/js文件，全局或者单个vue组件引用都可以
 ```css
     [class^="cl-icon"],[class*="cl-icon"] {
@@ -613,14 +675,23 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
 
 - ### 根据功能需求完成具体页面
     - 富文本编辑器
+
     ![img](./img/editor.gif)
+
     - markdown编辑器
+
     ![img](./img/markdown.gif)
+
     - 代码编辑器
+
     ![img](./img/code.png)
+
     - todolist
+
     ![img](./img/todo.gif)
+
     - 上传文件
+
     ![img](./img/uploa.gif)
     
 - ### 打包部署
@@ -736,7 +807,9 @@ vue项目中使用sass
   Vue.use(ElementUI)
 ```
 #### 示例
+
 ![img](./img/element.png)
+
 #### 其他vue-ui组件库
 - vux
 做微信端首选
@@ -755,6 +828,7 @@ vue项目中使用sass
 生成随机数据,拦截Ajax 请求 开始 前后端分离 让前端攻城师独立于后端进行开发。 增加单元测试的真实性 通过随机数据,模拟各种场景.
 
 先推荐一个格式化json数据的chrome插件：
+
 ![img](./img/json-handle.png)
 
 - vue全家桶自带的模拟数据
@@ -897,7 +971,9 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 - 部署方便，比如 github pages 或者作为一个 index.html 部署到任何地方
 - 方便定制，可以用于很大的文档也可以只有一个 README.md
 - 默认主题非常优雅
+
 ![img](./img/1.gif)
+
 - 安装
     - npm 安装
     - script标签
@@ -944,12 +1020,15 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 自定义设置左侧导航栏：
 
 ![img](./img/5-5.png)
+
 ![img](./img/5-6.png)
 
 设置头部右侧的图标和跳转链接：
 
 ![img](./img/5-7.png)
+
 ![img](./img/5-8.png)
+
 ![img](./img/5-9.png)
 
 ### other
@@ -977,11 +1056,17 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 ## 性能优化
 ### [前端常用chrome插件](http://www.cnblogs.com/calamus/p/7434741.html)
 #### FE
+
 ![img](./img/fe.png)
+
 #### Vue devtools
+
 ![img](./img/vue-tool.png)
+
 #### JSON-handle
+
 ![img](./img/json-handle.png)
+
 ### 性能优化工具
 #### Yslow
 YSlow是一款基于FireFox的插件，这个插件可以分析网站的页面，并告诉你为了提高网站性能，如何基于某些规则而进行优化。
@@ -1056,8 +1141,4 @@ Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文�
 
 Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。
 
-
-
-**docute** © [EGOIST](https://github.com/egoist), Released under the [MIT](https://egoist.mit-license.org/) License.<br>
-Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/docute/contributors)).
 > [calamus.xyz](https://calamus.xyz) · GitHub [@calamus0427](https://github.com/calamus0427) 
