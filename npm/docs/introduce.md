@@ -19,10 +19,8 @@
 ![img](./img/demo2.gif)
 - radar
 ![img](./img/radar.gif)
-### 基础知识储备
-![img](./img/vue入门.jpg)
+### 准备工作
 
-#### 准备工作
 - 一定的前端基础
     - html 👻
     - css  💯
@@ -31,7 +29,9 @@
     - 推荐node开发环境
     - 编辑器：webstorm、vscode等......
 
+![img](./img/vue入门.jpg)
 ## vue特点
+ 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
 #### MVVM模型
 - MVC（Model-View-Controller）:
   - 接受用户指令时，MVC 可以分成两种方式。一种是通过 View 接受指令，传递给 Controller。
@@ -226,7 +226,7 @@ export default {
   $ bower install vue
 ```
 ##### 开发一个canvas组件示例
-效果展示：
+[效果展示：](https://jsfiddle.net/calamus/aaphrwjc/)
 ![img](./img/canvas.gif)
 ```
   <template>
@@ -463,7 +463,18 @@ Vue.component("ra-example",{
 但如果涉及到比较复杂的交互这种方法显然比较麻烦，所有可以用到vuex：vue的状态管理插件，但这个插件的使用要慎重
 ### vue生命周期
 ![img](./img/vue-life.png)
+
 ![img](./img/vue-life-js.png)
+
+[生命周期钩子函数](https://jsfiddle.net/calamus/0sf6rnm1/)
+
+![img](./img/life-content.png)
+<p class="warning">
+Vue.nextTick():
+    在 Vue 生命周期的 created() 钩子函数进行的 DOM 操作一定要放在Vue.nextTick() 的回调函数中。原因是什么呢，原因是在 created() 钩子函数执行的时候 DOM 其实并未进行任何渲染，而此时进行 DOM 操作无异于徒劳，所以此处一定要将 DOM 操作。
+</p>
+
+
 ### 和其他框架的对比
 #### react
 - 相同点：
@@ -493,6 +504,11 @@ Vue.component("ra-example",{
     - vue
     - vue-router
     - element
+
+安装好之后的文件目录：
+
+![img](./img/project.png)
+
 - ### 项目整体布局
 
 布局如下图：
@@ -579,7 +595,22 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
 
     ![img](./img/ra-model.png)
    
-    
+    - #### iconfont
+    由于element-ui的icon不是很丰富，我们可以创建自己的icon库，会自己设计的当然最好了，不会的就可以借助一下第三方，比如Font Awesome或者阿里的[iconfont](http://iconfont.cn/)，都很强大~
+    最后可以按照需要封装成组件，或者直接<i></i>标签的方式导入
+
+    ![img](./img/icon.gif)
+以阿里的iconfont为例，添加喜欢的图标为自己的项目，下载后修改css文件，最后在需要的地方引入css/js文件，全局或者单个vue组件引用都可以
+```css
+    [class^="cl-icon"],[class*="cl-icon"] {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+    }
+```
+
 - ### 根据功能需求完成具体页面
     - 富文本编辑器
     ![img](./img/editor.gif)
@@ -593,19 +624,38 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
     ![img](./img/uploa.gif)
     
 - ### 打包部署
+关于跨域问题的解决：
+- **cors** （Cross Origin Resource）
+- 在 dev 开发模式下可以下使用**webpack 的 proxy
+```config.js
+    proxyTable: {
+    '/list': {
+        target: 'http://api.xxxxxxxx.com',
+        changeOrigin: true,
+        pathRewrite: {
+        '^/list': '/list'
+        }
+    }
+    }
+```
+
 ```
     $ npm run build
 ```
+编译之后发现项目目录下多出了dist文件夹，把里面的文件丢到服务器就ok了~
 
 ## vue插件
 ### vue-router
+
+由于用vue主要开发单页面应用，没有页面之间的跳转，在vue中，一个所谓的“页面”实则是一个看起来很像“页面”的一个组件（这个组件大部分情况下包含其他子组件）而已。既然没有页面，那怎样实现页面之间的切换呢？那就是我们现在要介绍的主角——vue-router 2.0。
+vue-router是在vue中控制路由的。
 ```javascript
   // 使用
   import VueRouter from "vue-router";
   import router from "./router/index.js";
 ```
 ```javascript
-  // 示例
+  // 示例 router.js
   import yourVies from "../views/index"
   export default new Router({
   routes: [
@@ -631,6 +681,41 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
     }]
   })
 ```
+```vue
+  //页面使用路由example.vue
+  <template>
+    <router-link to="/text"></router-link>
+    <router-view></router-view>
+  </templaye>
+
+```
+
+
+### sass
+
+![img](./img/sass.gif)
+
+CSS预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。
+- sass
+- less
+- Stylus
+#### 安装 vue-sass/scss
+```
+  $ npm install node-sass --save-dev
+  $ npm install sass-loader --save-dev
+```
+vue项目中使用sass
+<p class="warning">
+  注意：sass 和 scss 的语法区别
+</p>
+```
+  <style scoped lang="sass"></style>
+```
+  在vue组件中我们我们经常需要给style添加scoped来使得当前样式只作用于当前组件的节点。添加scoped之后，实际上vue在背后做的工作是将当前组件的节点添加一个像data-v-1233这样唯一属性的标识，当然也会给当前style的所有样式添加[data-v-1233]这样的话，就可以使得当前样式只作用于当前组件的节点。但是我们需要注意的是如果我们添加了子组件，同样的，如果子组件也用scoped标识了，那么在父组件中是不能设置子组件中的节点的。若父组件有scoped，子组件没有设置，同样，也是不能在父组件中设置子组件的节点的样式的，因为父组件用了scoped,那么父组件中style设置的样式都是唯一的了，不会作用与其他的组件样式。
+  
+  其他地方用sass需要编译成浏览器能解读的css才能正常使用，推荐koala软件
+
+
 ### element-ui
 #### 安装
 - cdn引入
@@ -657,76 +742,37 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
 做微信端首选
 - Mint UI
 同是饿了么开源的组件库，通过 webpack 和 babel 实现了按需引入，高度组件化，但是文档比较粗糙，功能不完善。
+- vue-material
+- ivew
+- vue-admin
+- vue-material
+- vuetify
+- Keen-UI
+- CoreUI-Free-Bootstrap-Admin-Template
+- Framework7-Vue
 
-### axios
-axios 是一个基于 Promise 的，为浏览器和 Node.js 设计的 HTTP 客户端。它尽可能简化封装了 HTTP 相关的各种操作，在 Web App 中使用非常方便。
-- vue-resourse
-官方已经不维护这个了，推荐使用axios
-```
-    # 安装
-    npm install vue-resource --save
-```
-```javascript
-    //使用 main.js
-    import VueResource from 'vue-resource'
-    Vue.use(VueResource);
-```
-- axios
-```
-  # 安装
-  $ npm install axios --save
-```
-```javascript
-  //使用
-  // index.js
-  import axios from 'axios'
-  Vue.prototype.$http = axios
-  // 全局配置示例axios.js
-  axios.defaults.timeout = 5000 ;
-  axios.defaults.baseURL = "http://66.112.214.33"
-  axios.defaults.baseURL = "";
-  axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-  axios.defaults.transformRequest = [function(param) {
-        let ret = "";
-        for (let it in param) {
-          ret +=
-            encodeURIComponent(it) + "=" + encodeURIComponent(param[it]) + "&";
-        }
-        ret = ret.slice(0, ret.length - 1);
-        return ret;
-      }];
-  // 使用示例
-  this.$http.post('url',data).then(
-    (successData) => {
-      this.$set(this.data,"url",successData.data.url);
-      successData.data)
-      console.log("success",this.data,"||",successData.data)
-      },
-    (failData) => {console.log("fail",failData)}
-          );
-```
-
-### sass
-![img](./img/sass.gif)
-CSS预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。
-- sass
-- less
-- Stylus
-#### 安装 vue-sass/scss
-```
-  $ npm install node-sass --save-dev
-  $ npm install sass-loader --save-dev
-```
-vue项目中使用sass
-<p class="warning">
-  注意：sass 和 scss 的语法区别
-</p>
-```
-  <style scoped lang="sass"></style>
-```
-  其他地方用sass需要编译成浏览器能解读的css才能正常使用，推荐koala软件
 ### mock
 生成随机数据,拦截Ajax 请求 开始 前后端分离 让前端攻城师独立于后端进行开发。 增加单元测试的真实性 通过随机数据,模拟各种场景.
+
+先推荐一个格式化json数据的chrome插件：
+![img](./img/json-handle.png)
+
+- vue全家桶自带的模拟数据
+    - 在项目根目录下创建需要的数据data.json文件
+    - dev-server.js写模拟接口
+
+```javascript
+    var appData = require('../data.json')
+    var books = appData.books
+    var apiRoutes = express.Router()
+    apiRoutes.get('/url', function(req, res){
+    res.json({
+        data: data
+    })
+    })
+    app.use('/api', apiRoutes)
+```
+
 - mockjs
 ```
   # 安装
@@ -764,20 +810,86 @@ vue项目中使用sass
 ```
 - postman 生成模拟数据
 
+### axios
+axios 是一个基于 Promise 的，为浏览器和 Node.js 设计的 HTTP 客户端。它尽可能简化封装了 HTTP 相关的各种操作，在 Web App 中使用非常方便。
+- vue-resourse
+与服务器端通信的HTTP插件，用来从服务器端请求数据.
+官方已经不维护这个了，推荐使用axios
+```
+    # 安装
+    npm install vue-resource --save
+```
+```javascript
+    //使用 main.js
+    import VueResource from 'vue-resource'
+    Vue.use(VueResource);
+```
+- axios
+axios还可以执行并发请求，设置拦截器等，简直不能再好用了
+```
+  # 安装
+  $ npm install axios --save
+```
+```javascript
+  //使用
+  // index.js
+  import axios from 'axios'
+  Vue.prototype.$http = axios
+  // 全局配置示例axios.js
+  axios.defaults.timeout = 5000 ;
+  axios.defaults.baseURL = "http://66.112.214.33"
+  axios.defaults.baseURL = "";
+  axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+  axios.defaults.transformRequest = [function(param) {
+        let ret = "";
+        for (let it in param) {
+          ret +=
+            encodeURIComponent(it) + "=" + encodeURIComponent(param[it]) + "&";
+        }
+        ret = ret.slice(0, ret.length - 1);
+        return ret;
+      }];
+  // 使用示例
+  this.$http.post('url',data).then(
+    (successData) => {
+      this.$set(this.data,"url",successData.data.url);
+      successData.data)
+      console.log("success",this.data,"||",successData.data)
+      },
+    (failData) => {console.log("fail",failData)}
+          );
+```
+
+
 ### vuex
-组件交互状态管理包，简单的父子组件通信需求不高的可以暂时不用这个
+组件交互状态管理包，简单的父子组件通信需求不高的可以暂时不用这个。
+这里我个人建议不要为了用 vuex 而用 vuex。就具体需求来看，如果系统之间的耦合性没有那么高完全没有必要使用 vuex 来存储data。每个页面里存放自己的 data 就行。当然有些数据还是需要用 vuex 来统一管理的，如登录token,用户信息，或者是一些全局个人偏好设置等，还是用vuex管理更加的方便，具体当然还是要结合自己的业务场景的。
+
 ```
   # 安装
   $ npm install vuex --save
 ```
 ### echart
+<p class="warning">
+    echart是功能很全，社区demo也都很丰富很完整，但项目太大了，导致页面打开很卡顿，建议按需引用，当然也可以图省事全部引用。
+</p>
 ```
   # 安装
   $ npm install echarts -S
 ```
+```javascript
+    // 引入 ECharts 主模块
+    import 'echarts/lib/echarts'
+    // 引入柱状图
+    import 'echarts/lib/chart/bar'
+    // 引入提示框和标题组件
+    import 'echarts/lib/component/tooltip'
+    import 'echarts/lib/component/title'
+```
 
 ### others
 富文本编辑器vue-editor2，代码编辑器vue-codemirror，markdown编辑器vue-markdown等
+
 ## 写文档
 ### vue-docute
 - 不需要服务器端，完全静态网站
@@ -802,6 +914,10 @@ cd docute
 npm run dev
 # then edit files in ./src dir and save to reload
 ```
+### 其他
+#### [swagger](https://swagger.io/)
+是一个REST APIs文档生成工具，可以在许多不同的平台上从代码注释中自动生成，开源，支持大部分语言，社区好。
+
 ## 前端调试
 ### chrome 开发者工具
 ### Fiddler/charles
