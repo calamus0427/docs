@@ -3,6 +3,7 @@ docute.init({
     // toc: './toc.md',
     landing: "landing.html",
     home: './introduce.md',
+    vue:'/vue.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
         html: '<a href="http://www.calamus.xyz">あやめ</a>'
@@ -28,7 +29,7 @@ docute.init({
           {
         title: "搭建管理后台",
         path: "/vue",
-        source: '/vue.md',
+        source: 'vue.md',
           },    
           {
               title: '下拉菜单', 
