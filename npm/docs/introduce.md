@@ -1031,7 +1031,7 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 
 ![img](./img/5-9.png)
 
-### other
+### [other](https://segmentfault.com/a/1190000007704665)
 #### [swagger](https://swagger.io/)
 是一个REST APIs文档生成工具，可以在许多不同的平台上从代码注释中自动生成，开源，支持大部分语言，社区好。
 
