@@ -24,6 +24,11 @@ docute.init({
         title: "首页",
         path: "/introduce",
         source: '/introduce.md',
+          }, 
+          {
+        title: "搭建管理后台",
+        path: "/vue",
+        source: '/vue.md',
           },    
           {
               title: '语言', 
