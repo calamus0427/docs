@@ -1097,7 +1097,14 @@ karma是基于node.js的js测试执行过程管理工具。
     $ karma start
 ```
 ### 基准测试
+基准测试是测量和评估软件性能指标的活动。
 #### Benchmark.js
+```npm
+    # 安装 Benchmark.js依赖于lodash和platform
+    $ npm install --save-dev benchmark
+    # 运行要测试的代码
+    $ node index.js
+```
 ### 代码覆盖率测试
 #### [Istanbul](https://github.com/gotwarlost/istanbul)
 测试代码覆盖率的四个维度：
@@ -1110,7 +1117,6 @@ karma是基于node.js的js测试执行过程管理工具。
     $ npm install -g Istanbul
     # 测试要测试的代码index.js
     $ istanbul cover index.js
-
 ```
 
 ## 性能优化

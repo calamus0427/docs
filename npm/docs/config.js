@@ -31,12 +31,14 @@ docute.init({
         source: '/vue.md',
           },    
           {
-              title: '语言', 
+              title: '下拉菜单', 
               type: 'dropdown', 
           items: [
+                {type: 'label', title: "语言"},
                 {title: '中文', path: '/language/chinese'},
                 {title: '日文', path: '/language/japanese'},
-                {title: '英文', path: '/language/english'}
+                {title: '英文', path: '/language/english'},
+                {type: 'sep'}
                 ]}],
    icons: [{
         icon: 'github',
