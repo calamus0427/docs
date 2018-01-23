@@ -1037,21 +1037,81 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 
 ## 前端调试
 ### chrome 开发者工具
+![img](./img/chrome-f12.png)
 ### Fiddler/charles
+抓包工具。
 ### 跨平台调试
+#### BrowserSync
+能让浏览器实时、快速响应文件更改并刷新页面，可以同时在PC、平板、手机等设备下调试。
+```
+    $ npm install browser-sync gulp --save-dev
+```
+#### Emmet liveStyle
+一个方便调试页面样式的chrome插件。
+![img](./img/emmet.png)
+#### 模拟器
+- 安卓模拟器 GenyMotion、Manymo
+- 移动端开发调试工具Weinre
+- Vorlon.js
+
 
 ## 前端测试
 ### 单元测试
 #### Jasmine
-#### Mocha
-#### Chai
+```npm
+    # 创建一个空的应用程序
+    $ npm init 、
+    # 安装框架
+    $ npm install -g jasmine
+    # 初始化单元测试配置
+    $ jasmine init
+    # 生成样例
+    $ jasmine examples
+    运行测试
+    $ Jasmine
+```
+#### Mocha + Chai
+```npm
+    # 创建一个空的应用程序
+    $ npm init
+    # 安装mocha
+    $ npm install -g mocha
+    # 安装chai及chai插件chai-spies
+    $ npm install chai chai-spies --save-dev
+    # 运行
+    $ Mocha
+```
 #### Sinon
+sinon是一个用于单元测试的模拟库，需要配合其他单元测试框架使用，比如jasmine。
 ### 自动化单元测试
-#### Karma
+#### [Karma](https://karma-runner.github.io)
+karma是基于node.js的js测试执行过程管理工具。
+```npm
+    # 安装
+    $ npm install -g karma-cli
+    # 安装karma包
+    $ npm install --save-dev karma
+    # 安装依赖库
+    $ npm install --save-dev jasmine-core
+    # 运行
+    $ karma start
+```
 ### 基准测试
 #### Benchmark.js
 ### 代码覆盖率测试
-#### Istanbul
+#### [Istanbul](https://github.com/gotwarlost/istanbul)
+测试代码覆盖率的四个维度：
+- 行覆盖率
+- 函数覆盖率
+- 分支覆盖率
+- 语句覆盖率
+```npm
+    # 安装
+    $ npm install -g Istanbul
+    # 测试要测试的代码index.js
+    $ istanbul cover index.js
+
+```
 
 ## 性能优化
 ### [前端常用chrome插件](http://www.cnblogs.com/calamus/p/7434741.html)
