@@ -24,7 +24,7 @@ docute.init({
   },{
         title: "首页",
         path: "/introduce",
-        source: '/introduce.md',
+        source: 'introduce.md',
           }, 
           {
         title: "搭建管理后台",

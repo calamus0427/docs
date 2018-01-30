@@ -82,23 +82,7 @@ main放项目展示内容，通过左侧nav点击链接router来控制展示内�
         }]
     })
 ```
-- ### 开发常用组件
-    - #### 介绍一个表单选择组件
-
-    demo展示：
-
-    ![img](./img/choose-table.gif)
-
-    实现：
-
-    组件封装：
-
-    ![img](./img/ra-table-component.png)
-
-    父页面中调用该组件：
-
-    ![img](./img/ra-model.png)
-   
+- ### 开发常用组件 
     - #### iconfont
     由于element-ui的icon不是很丰富，我们可以创建自己的icon库，会自己设计的当然最好了，不会的就可以借助一下第三方，比如Font Awesome或者阿里的[iconfont](http://iconfont.cn/)，都很强大~
     最后可以按照需要封装成组件，或者直接<i></i>标签的方式导入
