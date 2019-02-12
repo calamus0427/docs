@@ -1,5 +1,6 @@
 # vue-docute
-[项目预览](https://calamus0427.github.io/vue-docute/npm/docs/#/)
+[vue从入门到女装](https://calamus0427.github.io/vue-docute/vue/docs/#/)
+[Taro从入门到女装](https://calamus0427.github.io/vue-docute/Taro/docs/#/)
 ## 运行
 ```
 $ npm i -g docute-cli
