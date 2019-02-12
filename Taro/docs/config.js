@@ -6,7 +6,7 @@ docute.init({
     vue:'/vue.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
-        html: '<a href="http://www.calamus.xyz">あやめ</a>'
+        html: '<a href="http://www.calamus.xyz">Calamus</a>'
     },
     sidebar: true,
     tocVisibleDepth: 3,
@@ -27,9 +27,9 @@ docute.init({
         source: 'introduce.md',
           }, 
           {
-        title: "vue+iview搭建管理后台",
-        path: "/vue",
-        source: 'vue.md',
+        title: "Taro实践",
+        path: "/taro",
+        source: 'taro.md',
           },    
           {
         title: "资源汇总",
@@ -37,14 +37,15 @@ docute.init({
         source: 'awesome.md',
           },    
           {
-              title: '下拉菜单', 
+              title: '三端统一框架对比', 
               type: 'dropdown', 
           items: [
-                {type: 'label', title: "语言"},
-                {title: '中文', path: '/language/chinese'},
-                {title: '日文', path: '/language/japanese'},
-                {title: '英文', path: '/language/english'},
-                {type: 'sep'}
+                {title: 'react native', path: '/language/chinese'},
+                {title: 'Vue weex', path: '/language/japanese'},
+                {title: 'JDReact', path: '/language/japanese'},
+                {title: 'ionic', path: '/language/japanese'},
+                {title: 'flutter', path: '/language/japanese'},
+                {title: 'Hybrid APP， PhoneGap/Cordova ', path: '/language/english'}
                 ]}],
    icons: [{
         icon: 'github',

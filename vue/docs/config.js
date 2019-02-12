@@ -6,7 +6,7 @@ docute.init({
     vue:'/vue.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
-        html: '<a href="http://www.calamus.xyz">あやめ</a>'
+        html: '<a href="http://www.calamus.xyz">Calamus</a>'
     },
     sidebar: true,
     tocVisibleDepth: 3,
