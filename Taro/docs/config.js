@@ -3,12 +3,16 @@ docute.init({
     // toc: './toc.md',
     landing: "landing.html",
     home: './introduce.md',
-    vue:'/vue.md',
+    plugins: [
+      evanyou()
+    ],
+    vue:'/taro.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
         html: '<a href="http://www.calamus.xyz">Calamus</a>'
     },
     sidebar: true,
+    disableSidebarToggle: true,
     tocVisibleDepth: 3,
     marked: {
     smartypants: true
@@ -23,7 +27,7 @@ docute.init({
     }
   },{
         title: "首页",
-        path: "/introduce",
+        path: "/home",
         source: 'introduce.md',
           }, 
           {
@@ -40,12 +44,14 @@ docute.init({
               title: '三端统一框架对比', 
               type: 'dropdown', 
           items: [
-                {title: 'react native', path: '/language/chinese'},
-                {title: 'Vue weex', path: '/language/japanese'},
-                {title: 'JDReact', path: '/language/japanese'},
-                {title: 'ionic', path: '/language/japanese'},
-                {title: 'flutter', path: '/language/japanese'},
-                {title: 'Hybrid APP， PhoneGap/Cordova ', path: '/language/english'}
+                {title: '三端统一框架调研', path: '/three/compare'},
+                {type: 'sep'},
+                {title: 'react native', path: '/three/rn'},
+                {title: 'Vue weex', path: '/three/weex'},
+                {title: 'JDReact', path: '/three/JDReact'},
+                {title: 'ionic', path: '/three/ionic'},
+                {title: 'flutter', path: '/three/flutter'},
+                {title: 'Hybrid APP， PhoneGap/Cordova ', path: '/three/others'}
                 ]}],
    icons: [{
         icon: 'github',
@@ -63,6 +69,7 @@ docute.init({
       label: 'Hovered!', 
       svgId: 'my-icon', 
       link: 'http://blah.blah'
-    }],
+    }]
+    
 
 });
