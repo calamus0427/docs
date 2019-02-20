@@ -1,6 +1,6 @@
 
 <h1 align="center">
-<a href="http://calamus.wiki/vue-docute/npm/docs/#/">vue从入门到女装</a>
+<a href="http://calamus.wiki/vue-docute/npm/docs/#/">Taro从入门到女装</a>
 </h1>
 
 
