@@ -27,9 +27,14 @@ docute.init({
         source: 'introduce.md',
           }, 
           {
-        title: "vue+iview搭建管理后台",
+        title: "vue+elementUI搭建管理后台",
         path: "/vue",
         source: 'vue.md',
+          },    
+          {
+        title: "组件件通信的几种方式",
+        path: "/communication",
+        source: 'communication.md',
           },    
           {
         title: "资源汇总",
