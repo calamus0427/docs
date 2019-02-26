@@ -22,35 +22,24 @@ docute.init({
       }
     }
   },{
-        title: "首页",
+        title: "vue基础",
         path: "/home",
         source: 'introduce.md',
-          }, 
+          },       
+          
           {
-        title: "vue+elementUI搭建管理后台",
-        path: "/vue",
-        source: 'vue.md',
-          },    
-          {
-        title: "组件件通信的几种方式",
-        path: "/communication",
-        source: 'communication.md',
-          },    
-          {
-        title: "资源汇总",
-        path: "/awesome",
-        source: 'awesome.md',
-          },    
-          {
-              title: '下拉菜单', 
+              title: 'vue踩坑记录', 
               type: 'dropdown', 
           items: [
-                {type: 'label', title: "语言"},
-                {title: '中文', path: '/language/chinese'},
-                {title: '日文', path: '/language/japanese'},
-                {title: '英文', path: '/language/english'},
-                {type: 'sep'}
-                ]}],
+                {title: '组件件通信的几种方式', path: '/communication'},
+                {title: 'vue+elementUI搭建管理后台', path: '/vue'}
+                ]},
+                {
+                  title: "资源汇总",
+                  path: "/awesome",
+                  source: 'awesome.md',
+                    },    
+          ],
    icons: [{
         icon: 'github',
         label: 'Fork me on GitHub',
