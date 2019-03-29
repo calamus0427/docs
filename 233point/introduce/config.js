@@ -25,7 +25,7 @@ docute.init({
           }
         }
       },{
-        title: "233次元介绍",
+        title: "首页",
         path: "/home",
         source: 'introduce.md',
           },   
@@ -42,7 +42,7 @@ docute.init({
         },
                 {
                   title: "关于我",
-                  path: "/awesome",
+                  path: "/aboutme",
                   source: 'aboutme.md',
                     },    
           ],
