@@ -1,6 +1,8 @@
 # vue-docute
 [vue从入门到女装](https://calamus0427.github.io/docs/vue/introduce/#/)
 
+[盘点那些三端统一框架](https://calamus0427.github.io/docs/Three/introduce/#/)
+
 [Taro从入门到女装](https://calamus0427.github.io/docs/Taro/introduce/#/)
 
 [233次元介绍](https://calamus0427.github.io/docs/233point/introduce/#/)
@@ -8,7 +10,7 @@
 ## 运行
 ```
 $ npm i -g docute-cli
-$ docute init ./docs
-$ docute ./docs
+$ docute init ./introduce
+$ docute ./introduce
 # 然后打开 http://localhost:8080 查看运行结果
 ```

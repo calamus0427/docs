@@ -15,8 +15,8 @@ docute.init({
     disableSidebarToggle: true,
     tocVisibleDepth: 3,
     marked: {
-      smartypants: true
-    },
+    smartypants: true
+  },
     nav: [{
     path: '/',
     markdown: '## counter\n {{ count }}',
