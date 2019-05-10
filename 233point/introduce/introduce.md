@@ -6,7 +6,7 @@ title: 233次元小程序
 
 
 <h1 align="center">
-<a href="http://calamus.wiki/vue-docute/233point/docs/#/">233次元小程序</a>
+<a href="http://calamus.wiki/vue-docute/233point/introduce/#/">233次元小程序</a>
 </h1>
 
 
