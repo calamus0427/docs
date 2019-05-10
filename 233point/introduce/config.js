@@ -6,7 +6,7 @@ docute.init({
     plugins: [
       evanyou()
     ],
-    vue:'/taro.md',
+    vue:'/233point.md',
     announcement: {
         type: "danger", // warning | danger | success | primary
         html: '<a href="http://www.calamus.xyz">Calamus</a>'
@@ -15,8 +15,8 @@ docute.init({
     disableSidebarToggle: true,
     tocVisibleDepth: 3,
     marked: {
-    smartypants: true
-  },
+      smartypants: true
+    },
     nav: [{
     path: '/',
     markdown: '## counter\n {{ count }}',
