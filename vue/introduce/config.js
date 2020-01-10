@@ -1,3 +1,12 @@
+/*
+ * @Author       : Calamus
+ * @websit       : calamus.xyz
+ * @Description  : 
+ * @FilePath     : /vue/introduce/config.js
+ * @Date         : 2019-02-20 15:53:42
+ * @LastEditors  : Calamus
+ * @LastEditTime : 2020-01-10 15:20:47
+ */
 docute.init({
     //自定义sidebar
     // toc: './toc.md',
@@ -26,12 +35,19 @@ docute.init({
         path: "/home",
         source: 'introduce.md',
           },       
-          
+          {
+            title: 'UI库', 
+            type: 'dropdown', 
+        items: [
+              {title: 'element', path: '/UI/element'},
+              {title: 'ant design', path: '/UI/antdesign'},
+              ]},
           {
               title: 'vue开发实践', 
               type: 'dropdown', 
           items: [
-                {title: 'vue+elementUI搭建管理后台', path: '/vue'}
+                {title: '组件开发', path: '/components'},
+                {title: 'vue+elementUI搭建管理后台', path: '/vue'},
                 ]},
           {
               title: 'vue踩坑记录', 

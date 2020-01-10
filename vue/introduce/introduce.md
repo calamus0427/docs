@@ -36,7 +36,7 @@
 ![img](./img/vue入门.jpg)
 
 ## vue特点
- 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
+ Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
 #### MVVM模型
 - MVC（Model-View-Controller）:
   - 接受用户指令时，MVmdC 可以分成两种方式。一种是通过 View 接受指令，传递给 Controller。
@@ -555,6 +555,83 @@ Vue.nextTick():
   - 在性能上，AngularJS依赖对数据做脏检查，所以Watcher越多越慢。Vue.js使用基于依赖追踪的观察并且使用异步队列更新。所有的数据都是独立触发的。对于庞大的应用来说，这个优化差异还是比较明显的。
 
 
+
+
+## vue项目搭建
+### 搭建基础环境
+#### CDN方式引入
+```js
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+#### npm方式
+```bash
+npm install vue
+```
+#### 命令行工具 (Vue-CLI)
+- 全局安装cli工具
+```bash
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+```
+- 创建vue项目
+```bash
+vue create projectName
+```
+选默认的包含了基本的 Babel + ESLint 设置的 preset，也可以选“手动选择特性”来选取需要的特性。
+![img](./img/create1.png)
+默认的设置非常适合快速创建一个新项目的原型，而手动设置则提供了更多的选项，它们是面向生产的项目更加需要的
+![img](./img/create2.png)
+```bash
+cd demo
+cd npm run serve
+```
+
+### 目录解析
+```md
+├── README.md            项目介绍
+├── public 
+│  ├── index.html           入口页
+│  ├── favicon.ico          网站图标
+├── config             项目配置
+│  ├── dev.env.js           开发环境变量
+│  ├── index.js            项目配置文件
+│  ├── prod.env.js           生产环境变量
+│  └── test.env.js           测试环境变量
+├── mock              mock数据目录
+│  └── hello.js
+├── package.json          npm包配置文件，里面定义了项目的npm脚本，依赖包等信息
+├── vue.config.js          vue配置文件
+├── src               源码目录  
+│  ├── main.js             入口js文件
+│  ├── app.vue             根组件
+│  ├── components           公共组件目录
+│  │  └── title.vue       一些自定义公共组件
+│  ├── assets             资源目录
+│  │  └── images
+│  │    └── logo.png
+│  │  └── font            自定义图标，字体等
+│  ├── router             前端路由
+│  │  └── index.js
+│  ├── store              Vuex应用级数据（state）
+│  │  └── index.js
+│  └── views              页面目录
+│    ├── hello.vue
+│    └── notfound.vue
+├── static             纯静态资源
+└── test              测试文件目录（unit&e2e）
+  └── unit              单元测试
+    ├── index.js            入口脚本
+    ├── karma.conf.js          karma配置文件
+    └── specs              单测case目录
+      └── Hello.spec.js
+```
+
+### 配置文件解析
+![img](./img/config1.jpeg)
+
+### 安装其他依赖插件
+
 ## vue插件
 ### vue-router
 
@@ -664,65 +741,6 @@ vue项目中使用sass
 - CoreUI-Free-Bootstrap-Admin-Template
 - Framework7-Vue
 
-### mock
-生成随机数据,拦截Ajax 请求 开始 前后端分离 让前端攻城师独立于后端进行开发。 增加单元测试的真实性 通过随机数据,模拟各种场景.
-
-先推荐一个格式化json数据的chrome插件：
-
-![img](./img/json-handle.png)
-
-- vue全家桶自带的模拟数据
-    - 在项目根目录下创建需要的数据data.json文件
-    - dev-server.js写模拟接口
-
-```javascript
-    var appData = require('../data.json')
-    var books = appData.books
-    var apiRoutes = express.Router()
-    apiRoutes.get('/url', function(req, res){
-    res.json({
-        data: data
-    })
-    })
-    app.use('/api', apiRoutes)
-```
-
-- mockjs
-```
-  # 安装
-  $ npm install mockjs
-```
-```javascript
-  //示例
-  Mock.mock("mock_table", "post",function(options) {
-  console.log("mock", options);
-  return Mock.mock({
-     'list|10-20' : [{
-        loginName: "@name",
-        msgName:"@name",
-        title:"@name",
-        "id|1-100": 100,
-        "status|1-13": 1,
-        "poicyType|1-3":1,
-        color: "@color",
-        date: "@date('yyyy-MM-dd')",
-        email: "@email",
-        datetime: "@time",
-        // 'sex':Random.sex(),
-        range: "@range",
-        character: "@character",
-        float: "@float",
-        int: "@int",
-        boolean: "@boolean",
-        img: "@image('40x40', '#00405d', '#FFF', 'coocaa')",
-        iconPath: "@dataImage('50x40','coocaa')",
-        url: "@url",
-        "string|1-10": "★",
-        "weekday|1": ["周一", "周二", "周三", "周四", "周五", "周六", "周天"]
-  }]});
-});
-```
-- postman 生成模拟数据
 
 ### axios
 axios 是一个基于 Promise 的，为浏览器和 Node.js 设计的 HTTP 客户端。它尽可能简化封装了 HTTP 相关的各种操作，在 Web App 中使用非常方便。
@@ -803,6 +821,69 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
 
 ### [others](http://www.cnblogs.com/calamus/p/8242446.html)
 富文本编辑器vue-editor2，代码编辑器vue-codemirror，markdown编辑器vue-markdown等
+
+
+
+
+## 挡板数据处理
+生成随机数据,拦截Ajax 请求 开始 前后端分离 让前端攻城师独立于后端进行开发。 增加单元测试的真实性 通过随机数据,模拟各种场景.
+
+先推荐一个格式化json数据的chrome插件：
+
+![img](./img/json-handle.png)
+
+- vue全家桶自带的模拟数据
+    - 在项目根目录下创建需要的数据data.json文件
+    - dev-server.js写模拟接口
+
+```javascript
+    var appData = require('../data.json')
+    var books = appData.books
+    var apiRoutes = express.Router()
+    apiRoutes.get('/url', function(req, res){
+      res.json({
+          data: data
+      })
+    })
+    app.use('/api', apiRoutes)
+```
+
+- mockjs
+```
+  # 安装
+  $ npm install mockjs
+```
+```javascript
+  //示例
+  Mock.mock("mock_table", "post",function(options) {
+  return Mock.mock({
+     'list|10-20' : [{
+        loginName: "@name",
+        msgName:"@name",
+        title:"@name",
+        "id|1-100": 100,
+        "status|1-13": 1,
+        "poicyType|1-3":1,
+        color: "@color",
+        date: "@date('yyyy-MM-dd')",
+        email: "@email",
+        datetime: "@time",
+        // 'sex':Random.sex(),
+        range: "@range",
+        character: "@character",
+        float: "@float",
+        int: "@int",
+        boolean: "@boolean",
+        img: "@image('40x40', '#00405d', '#FFF', 'coocaa')",
+        iconPath: "@dataImage('50x40','coocaa')",
+        url: "@url",
+        "string|1-10": "★",
+        "weekday|1": ["周一", "周二", "周三", "周四", "周五", "周六", "周天"]
+  }]});
+});
+```
+- postman 生成模拟数据
+- yapi、swagger等接口定义工具
 
 ## 写文档
 ### [vue-docute](https://docute.js.org/#/home)
