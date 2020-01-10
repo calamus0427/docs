@@ -5,7 +5,7 @@
  * @FilePath     : /vue/introduce/config.js
  * @Date         : 2019-02-20 15:53:42
  * @LastEditors  : Calamus
- * @LastEditTime : 2020-01-10 15:20:47
+ * @LastEditTime : 2020-01-11 00:44:12
  */
 docute.init({
     //自定义sidebar
@@ -39,6 +39,7 @@ docute.init({
             title: 'UI库', 
             type: 'dropdown', 
         items: [
+              {title: 'UI库总结', path: '/UI/index'},
               {title: 'element', path: '/UI/element'},
               {title: 'ant design', path: '/UI/antdesign'},
               ]},
@@ -47,6 +48,7 @@ docute.init({
               type: 'dropdown', 
           items: [
                 {title: '组件开发', path: '/components'},
+                {title: '自定义指令开发', path: '/directive'},
                 {title: 'vue+elementUI搭建管理后台', path: '/vue'},
                 ]},
           {

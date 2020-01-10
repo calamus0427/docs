@@ -584,7 +584,10 @@ vue create projectName
 ![img](./img/create2.png)
 ```bash
 cd demo
-cd npm run serve
+# 启动
+npm run serve
+# 构建
+npm run build
 ```
 
 ### 目录解析
@@ -628,7 +631,66 @@ cd npm run serve
 ```
 
 ### 配置文件解析
+#### vue.config.js
+```js 
+module.exports = {
+  // 基本路径
+  publicPath: "./",
+  // 输出文件目录
+  outputDir: "dist",
+  //静态文件目录
+  assetsDir: "static",
+  // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
+  // webpack配置
+  // chainWebpack: config => {},
+  configureWebpack: config => {
+    config.devtool = 'source-map'
+    if (process.env.NODE_ENV === "production") {
+      // 为生产环境修改配置...
+      config.mode = "production";
+    } else {
+      // 为开发环境修改配置...
+      config.mode = "development";
+    }
+    let plugin = [
+      new AntDesignThemePlugin(options)
+    ];
+    config.plugins = [...config.plugins, ...plugin];
+    config.resolve.alias.vue$ = "vue/dist/vue.esm.js";
+  },
+
+  css: {
+    // 是否使用css分离插件 ExtractTextPlugin
+    extract: true,
+    // 开启 CSS source maps?
+    sourceMap: false,
+    // css预设器配置项
+    loaderOptions: {
+      less: {
+        javascriptEnabled: true,
+        // data: `@import "@/common/style/common.less";`
+      },
+      sass: {
+      }
+    },
+    // 启用 CSS modules for all css / pre-processor files.
+    modules: false
+  },
+  // 生产环境是否生成 sourceMap 文件
+  productionSourceMap: false,
+
+  // css相关配置
+  // 是否为 Babel 或 TypeScript 使用 thread-loader。该选项在系统的 CPU 有多于一个内核时自动启用，仅作用于生产构建。
+  parallel: require("os").cpus().length > 1,
+
+  lintOnSave: false //开启检查
+};
+```
+
+#### 
 ![img](./img/config1.jpeg)
+
+
 
 ### 安装其他依赖插件
 
@@ -728,6 +790,7 @@ vue项目中使用sass
 ![img](./img/element.png)
 
 #### 其他vue-ui组件库
+- ant design
 - vux
 做微信端首选
 - Mint UI
@@ -854,8 +917,9 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
   $ npm install mockjs
 ```
 ```javascript
-  //示例
-  Mock.mock("mock_table", "post",function(options) {
+//示例
+// 模拟mock接口
+Mock.mock("/getList", "post",function(options) {
   return Mock.mock({
      'list|10-20' : [{
         loginName: "@name",
@@ -881,6 +945,10 @@ axios还可以执行并发请求，设置拦截器等，简直不能再好用了
         "weekday|1": ["周一", "周二", "周三", "周四", "周五", "周六", "周天"]
   }]});
 });
+//调用
+axios.post('/getClassInfomation',{ userName: 21 }).then(res => { // url即在mock.js中定义的
+            console.log('res: ', res.data)
+  })
 ```
 - postman 生成模拟数据
 - yapi、swagger等接口定义工具
