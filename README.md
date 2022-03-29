@@ -5,7 +5,7 @@
 
 [Taro从入门到女装](https://calamus0427.github.io/docs/Taro/introduce/#/)
 
-[Uni从入门到女装](https://calamus0427.github.io/docs/Uni/introduce/#/)
+[uni-app入门与实践](https://calamus0427.github.io/docs/uni-app/introduce/#/)
 
 [233次元介绍](https://calamus0427.github.io/docs/233point/introduce/#/)
 
