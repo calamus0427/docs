@@ -4,9 +4,13 @@
 是一个使用`Vue`开发所有前端应用的框架，开发者编写一套代码，可发布多个平台。
 #### 多端开发
 一套代码编到14个平台
+
 ![unifor14.png](https://cdn.calamus.xyz/uni/unifor14.png)
+
 ##### 其他跨端框架对比
+
 ![compare.png](https://cdn.calamus.xyz/uni/compare.png)
+
 ### 优秀的小程序开发框架
 即使不跨端， `uni-app` 也是很好的小程序开发框架
 ### 比原生的优势
@@ -19,17 +23,30 @@
 - 性能优于原生（长列表加载等情形下对比）
 - Hbuilder工具支持
 - 社区支持
-### 条件编译
 
+### 条件编译
+uni-app能实现一套代码、多端运行，核心是通过编译器 + 运行时实现的
+通过[条件编译](https://uniapp.dcloud.io/tutorial/compiler.html)，将注释里面的代码编译到不同平台。
+以 #ifdef 或 #ifndef 加 %PLATFORM% 开头，以 #endif 结尾。
+
+  ```
+  #ifdef H5 || MP-WEIXIN
+  // Todo
+  #endif
+  ```
 
 
 ## uni开发环境准备
 ### Hbuilder一键创建
 #### 启动
 打开Hbuilder ==》 新建项目（有很多模版可以选择）
+
 ![Hbuilder-start.jpeg](https://cdn.calamus.xyz/uni/Hbuilder-start.jpeg)
+
 启动项目 ==》 如果启动失败检查下微信开发者设置和Hbuilder设置
+
 ![Hbuilder-error.jpeg](https://cdn.calamus.xyz/uni/Hbuilder-error.jpeg)
+
 开发更改是实时预览的～打包发布都可以点击生成
 
 #### 目录结构
@@ -114,20 +131,24 @@ npm run build:mp-weixin
 [`wxcomponents`](https://uniapp.dcloud.io/tutorial/miniprogram-subject.html#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E6%94%AF%E6%8C%81)
 支持在 App 和 小程序 中使用**小程序自定义组件**，从HBuilderX2.4.7起，H5端也可以运行微信小程序组件。如果想用于支付宝百度头条，则需要新建swancomponents等目录。虽然各小程序平台均支持自定义组件，但细节有差异，仍需自己测试。
 
-比较妥善的跨端做法，是在uni-app插件市场寻找类似功能的vue组件，废弃之前的小程序自定义组件。比如把wx-charts换成ucharts、把wx-parser换成uparser。
+比较妥善的跨端做法，是在uni-app插件市场寻找类似功能的vue组件，废弃之前的小程序自定义组件。
 （uni的处理其实是将该文件夹拷贝到dist目录下）
+
 ![wxcomponents.png](https://cdn.calamus.xyz/uni/wxcomponents.png)
-**注意事项**
-- 小程序组件需要放在项目特殊文件夹  `wxcomponents` （或 mycomponents、swancomponents）。HBuilderX 建立的工程  `wxcomponents`  文件夹在 项目根目录下。vue-cli 建立的工程  `wxcomponents`  文件夹在  `src`  目录下。可以在 [vue.config.js](https://cli.vuejs.org/zh/config/#vue-config-js)中自定义其他目录
--  当需要在  `vue`  组件中使用小程序组件时，注意在  `pages.json`  的  `globalStyle`  中配置  `usingComponents` ，而不是页面级配置。
--  注意组件使用时需要遵循vue语法，比如：数据和事件绑定的差异，应按照  `vue`  的数据和事件绑定方式
+
+  **注意事项**
+  - 小程序组件需要放在项目特殊文件夹  `wxcomponents` （或 mycomponents、swancomponents）。HBuilderX 建立的工程  `wxcomponents`  文件夹在 项目根目录下。vue-cli 建立的工程  `wxcomponents`  文件夹在  `src`  目录下。可以在 [vue.config.js](https://cli.vuejs.org/zh/config/#vue-config-js)中自定义其他目录
+  -  当需要在  `vue`  组件中使用小程序组件时，注意在  `pages.json`  的  `globalStyle`  中配置  `usingComponents` ，而不是页面级配置。
+  -  注意组件使用时需要遵循vue语法，比如：数据和事件绑定的差异，应按照  `vue`  的数据和事件绑定方式
+
 ### 原生小程序转uniapp
-[miniprogram-to-uniapp](https://ext.dcloud.net.cn/plugin?id=2656)
+#### [miniprogram-to-uniapp](https://ext.dcloud.net.cn/plugin?id=2656)
 转换小程序做的工作有：
 - setData全部转换为data（经测试，部分有遗漏，需要手动检漏）
 - template 改为vue
 - 生命周期内处理函数移植和对应（不完全匹配需要自行修改）
 - ...
+
 #### 原生小程序转uni-app细则
 - app.json为pages.json，每个小程序page目录下的index.json添加到pages.json里
 - globalData等全局变量或方法更改
@@ -175,7 +196,9 @@ npm run build:mp-weixin
 比如camera组件：
 需要注意在各个平台的兼容性；
 小程序开发中需要注意api表现是否一致
+
 ![camera.jpeg](https://cdn.calamus.xyz/uni/camera.jpeg)
+
 uni-app非H5端，不支持使用svg标签。但image标签支持svg图片。
 
 ### 状态管理
@@ -265,7 +288,9 @@ export default { X };
 
 2. 建议避免在同一元素上同时使用 v-if 与 v-for
 3. 生命周期的变更
+
 ![vue23.png](https://cdn.calamus.xyz/uni/vue23.png)
+
 4. Vue3 将不支持  `slot="xxx"`  的用法 ，使用  `v-slot:xxx`  用法。
 
 	
@@ -361,7 +386,9 @@ export default {
 ```
 
 [--status-bar-height](https://uniapp.dcloud.io/tutorial/syntax-css.html#css-%E5%8F%98%E9%87%8F)uni提供了css变量系统状态栏高度来自定义导航栏，方便不用计算。此变量在微信小程序环境为固定  `25px` ，在 App 里为手机实际状态栏高度。
+
 ![css变量.jpeg](https://cdn.calamus.xyz/uni/cssvar.jpeg)
+
 使用css变量优化：
 
 ```vue
@@ -451,6 +478,150 @@ export default  {
 }
 ```
 
+- trtc 音视频组件
+
+```vue 
+<template>
+ <live-pusher
+                            class="pusher"
+                            :url="pusher.url"
+                            mode="RTC"
+                            :autopush="true"
+                            :enable-camera="true"
+                            :enable-mic="true"
+                            :muted="false"
+                            :enable-agc="false"
+                            :enable-ans="false"
+                            :enable-ear-monitor="false"
+                            :auto-focus="true"
+                            :zoom="true"
+                            :min-bitrate="600"
+                            :max-bitrate="900"
+                            :video-width="360"
+                            :video-height="640"
+                            :beauty="0"
+                            :whiteness="0"
+                            orientation="vertical"
+                            aspect="9:16"
+                            device-position="front"
+                            :remote-mirror="false"
+                            local-mirror=auto
+                            :background-mute="false"
+                            audio-quality="high"
+                            audio-volume-type="voicecall"
+                            :audio-reverb-type="0"
+                            waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
+                            :debug="debug"
+                            @statechange="_pusherStateChangeHandler"
+                            @netstatus="_pusherNetStatusHandler"
+                            @error="_pusherErrorHandler"
+                            @bgmstart="_pusherBGMStartHandler"
+                            @bgmprogress="_pusherBGMProgressHandler"
+                            @bgmcomplete="_pusherBGMCompleteHandler"
+                        />
+</template>
+
+<script>
+import TIM from "./libs/tim-wx.js";
+import TRTC from "./libs/trtc-wx.js";
+
+export default {
+  created() {
+    // 在组件实例刚刚被创建时执行
+    console.log(TAG_NAME, "created", ENV);
+    this.TRTC = new TRTC(this);
+    this.EVENT = this.TRTC.EVENT;
+    this.InitTRTC();
+    this.bindTRTCRoomEvent();
+  },
+  methods:{
+    InitTRTC(){
+      this.userController.on(EVENT.REMOTE_USER_JOIN, event => {
+        console.log(TAG_NAME, "远端用户进房", event, event.data.userID);
+      }); 
+      // 初始化事件订阅
+      this.TRTC.on(TRTC_EVENT.LOCAL_JOIN, event => {
+        console.log("* room LOCAL_JOIN", event);
+        this._emitter.emit(this.EVENT.LOCAL_JOIN, {
+          userID: this.pusher.userID
+        });
+      });
+    },
+    enterRoom(params) {
+      return new Promise((resolve, reject) => {
+        // 1. 补齐进房参数，校验必要参数是否齐全
+        if (params) {
+          Object.assign(this.pusher, params);
+          Object.assign(this.config, params);
+        }
+        if (!this._checkParam(this.config)) {
+          reject(new Error("缺少必要参数"));
+          return;
+        } // 2. 根据参数拼接 push url，赋值给 live-pusher，
+
+        this._getPushUrl(this.config)
+          .then(pushUrl => {
+            this.pusher.url = pushUrl;
+            this.pusher = this.TRTC.enterRoom(this.config);
+            this.$nextTick(() => {
+              // 真正进房成功需要通过 1018 事件通知
+              this.TRTC.getPusherInstance().start(); // 开始推流
+              this.status.isPush = true;
+              this._loginIM({ ...this.config, roomID: params.roomID });
+              setTimeout(() => {
+                uni.createLivePlayerContext("live-pusher", this).stop();
+              }, 2000);
+              resolve();
+            });
+          })
+          .catch(res => {
+            // 进房失败需要通过 pusher state 事件通知，目前还没有准确的事件通知
+            console.error(TAG_NAME, "enterRoom error", res);
+            reject(res);
+          });
+      });
+    },
+    _initIM(config) {
+      const tim = TIM.create({
+        SDKAppID: config.sdkAppID
+      }); 
+      // 0 普通级别，日志量较多，接入时建议使用
+      // 1 release级别，SDK 输出关键信息，生产环境时建议使用
+      // 2 告警级别，SDK 只输出告警和错误级别的日志
+      // 3 错误级别，SDK 只输出错误级别的日志
+      // 4 无日志级别，SDK 将不打印任何日志
+      // if (config.debugMode) {
+
+      tim.setLogLevel(1);
+      tim.registerPlugin({ "tim-upload-plugin": TIMUploadPlugin });
+
+      // 取消监听
+      tim.off(TIM.EVENT.SDK_READY, this._onIMReady);
+      tim.off(TIM.EVENT.MESSAGE_RECEIVED, this._onIMMessageReceived);
+      tim.off(TIM.EVENT.SDK_NOT_READY, this._onIMNotReady);
+      tim.off(TIM.EVENT.ERROR, this._onIMError); // 监听事件
+
+      tim.on(TIM.EVENT.SDK_READY, this._onIMReady, this);
+      tim.on(TIM.EVENT.MESSAGE_RECEIVED, this._onIMMessageReceived, this);
+      tim.on(TIM.EVENT.SDK_NOT_READY, this._onIMNotReady, this);
+      tim.on(TIM.EVENT.ERROR, this._onIMError, this);
+      this.tim = tim;
+      uni.tim = tim;
+    },
+     _loginIM(params) {
+      if (!this.tim) {
+        return;
+      }
+      return this.tim.login({
+        userID: params.userID,
+        userSig: params.userSig
+      });
+    },
+  }
+}
+</script>
+```
+
 
 
 ## 遇到的问题
@@ -459,9 +630,11 @@ export default  {
 camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord
 解决思路1: position:fixed;left:100%;
 解决思路2：camera相机初始化完成时binddone中执行后续操作
+
 ![camera-bind.jpeg](https://cdn.calamus.xyz/uni/camera-bind.jpeg)
 
 - 页面栈10次跳转，超出了将无法打开其他页面
+
 #### 页面跳转方法
 - `uni.navigateTo` 保留当前页面，跳转到应用内的某个页面
 打开新页面，新页面入栈
@@ -473,10 +646,12 @@ camera组件用v-if控制了显隐，显示时异步加载未完成就执行star
 切换tab页面，页面全部出栈，只留下新的 Tab 页面
 - `uni.navigateBack` 关闭当前页面，返回上一页面或多级页面。
 返回，页面不断出栈，直到目标返回页
+
 **注意**
 -  `navigateTo` ,  `redirectTo`  只能打开非 tabBar 页面。
 -  `switchTab`  只能打开  `tabBar`  页面。
 - 不能在  `App.vue`  里面进行页面跳转
+
 #### [`getcurrentpages`](https://uniapp.dcloud.io/api/window/window.html#getcurrentpages)
 获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
 当前解决方案：
