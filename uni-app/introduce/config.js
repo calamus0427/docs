@@ -40,6 +40,11 @@ docute.init({
                 {title: 'globalconfig自定义配置', path: '/practice?id=globalconfig自定义配置'},
                 ]},
                 {
+                  title: "遇到的问题",
+                  path: "/FAQ",
+                  source: 'FAQ.md',
+                    },
+                {
                   title: "uni插件开发",
                   path: "/dcloud",
                   source: 'dcloud.md',

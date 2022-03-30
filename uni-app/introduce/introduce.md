@@ -1,13 +1,11 @@
-## 准备工作
-
-### uni介绍
+## uni介绍
 是一个使用`Vue`开发所有前端应用的框架，开发者编写一套代码，可发布多个平台。
-#### 多端开发
+### 多端开发
 一套代码编到14个平台
 
 ![unifor14.png](https://cdn.calamus.xyz/uni/unifor14.png)
 
-##### 其他跨端框架对比
+#### 其他跨端框架对比
 
 ![compare.png](https://cdn.calamus.xyz/uni/compare.png)
 
@@ -34,6 +32,29 @@ uni-app能实现一套代码、多端运行，核心是通过编译器 + 运行�
   // Todo
   #endif
   ```
+## uni插件及社区
+### DCloud插件市场
+[DCloud插件市场](https://ext.dcloud.net.cn/) 
+有丰富的插件、组件；支持开发者自己上传提交甚至收费。
+### 插件库
+#### 常用插件库推荐
+组件库选择原则：vue组件、小程序组件、跨端组件
+- [uni-ui](https://uniapp.dcloud.io/component/uniui/uni-ui.html) 官方组件库，支持跨端
+
+![uni-ui](https://cdn.calamus.xyz/uni/uni-ui.jpeg)
+
+- [colorUI](https://ext.dcloud.net.cn/plugin?id=239)  非常好看的UI库
+
+![color-ui](https://cdn.calamus.xyz/uni/color-ui.jpeg)
+
+- [uviewui](https://www.uviewui.com/)
+功能丰富实用，尤其是内置样式和很多js，vuex，接口封装很完整
+
+![uviewui](https://cdn.calamus.xyz/uni/uview-ui.jpeg)
+
+### uniCloud
+类似云开发,需要付费，有免费额度。
+
 
 
 ## uni开发环境准备
@@ -294,26 +315,10 @@ export default { X };
 4. Vue3 将不支持  `slot="xxx"`  的用法 ，使用  `v-slot:xxx`  用法。
 
 	
-
-## uni插件及社区
-- dCloud插件市场
-- 插件开发
-- uniCloud：类似云开发
-
-### 插件库
-#### 常用插件库推荐
-组件库选择原则：vue组件、小程序组件、跨端组件
-- [uni-ui](https://uniapp.dcloud.io/component/uniui/uni-ui.html)
-官方组件库，支持跨端
-- [colorUI](https://ext.dcloud.net.cn/plugin?id=239) 
-非常好看的UI库
-- [uviewui](https://www.uviewui.com/)
-功能丰富实用，尤其是内置样式和很多js，vuex，接口封装很完整
-
 ## 常用业务场景封装
-- uni.request
+### uni.request
 注意uni.request和wx.request参数返回值差异比较大，不可直接更改。
-- 自定义导航
+### 自定义导航
 先在pages.json中取消默认导航
 
 ```
@@ -328,9 +333,13 @@ export default { X };
 [uni.getSystemInfo(OBJECT)](https://uniapp.dcloud.io/api/system/info.html#getsysteminfosync)动态计算状态栏的高度；
 内容使用slot的形式插入。
 [uni.setNavigationBarTitle(OBJECT)](https://uniapp.dcloud.io/api/ui/navigationbar.html) 同微信，uni也提供了api修改导航栏设置
+[wx.getMenuButtonBoundingClientRect()](https://developers.weixin.qq.com/miniprogram/dev/api/ui/menu/wx.getMenuButtonBoundingClientRect.html)
+获取菜单按钮（右上角胶囊按钮）的布局位置信息。坐标信息以屏幕左上角为原点。
+
 导航栏大概代码：
 
-```javascript
+
+```Vue
 <template>
 <view class="fix-full-page">
   <view class="navigation-bar" :style="{height:height}">
@@ -372,11 +381,20 @@ export default {
     },
     height() {
       const { platform, statusBarHeight } = uni.getSystemInfoSync();
-      return statusBarHeight  + "px";
+      let height = statusBarHeight + 4; //ios 24px
+      if (platform.toLowerCase() == "android") {
+        height += 4; //android 28px
+      }
+      // 胶囊高度 32px 下边框6px height 状态栏高度
+      return height + 38 + "px";
     },
     marginTop() {
       const { platform, statusBarHeight } = uni.getSystemInfoSync();
-      return statusBarHeight + "px";
+      let height = statusBarHeight + 4;
+      if (platform.toLowerCase() == "android") {
+        height += 4;
+      }
+      return height + "px";
     }
   },
   methods: {}
@@ -417,7 +435,7 @@ export default {
 
 ```
 
-- message全局
+### message全局
 
 	```javascript
 		const config = require('../config.js')
@@ -470,7 +488,7 @@ export default {
 		this.message.toast('你好')
 	```
 
-- globalConfig自定义配置
+### globalConfig自定义配置
 
 ```
 export default  {
@@ -478,7 +496,7 @@ export default  {
 }
 ```
 
-- trtc 音视频组件
+### trtc音视频组件
 
 ```vue 
 <template>
@@ -625,7 +643,7 @@ export default {
 
 
 ## 遇到的问题
-- 原生组件异步渲染
+### 原生组件异步渲染
 [uni.createCameraContext()](https://uniapp.dcloud.io/api/media/camera-context.html#createcameracontext)
 camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord
 解决思路1: position:fixed;left:100%;
@@ -633,8 +651,7 @@ camera组件用v-if控制了显隐，显示时异步加载未完成就执行star
 
 ![camera-bind.jpeg](https://cdn.calamus.xyz/uni/camera-bind.jpeg)
 
-- 页面栈10次跳转，超出了将无法打开其他页面
-
+### 页面栈10次跳转，超出了将无法打开其他页面
 #### 页面跳转方法
 - `uni.navigateTo` 保留当前页面，跳转到应用内的某个页面
 打开新页面，新页面入栈
@@ -647,10 +664,10 @@ camera组件用v-if控制了显隐，显示时异步加载未完成就执行star
 - `uni.navigateBack` 关闭当前页面，返回上一页面或多级页面。
 返回，页面不断出栈，直到目标返回页
 
-**注意**
--  `navigateTo` ,  `redirectTo`  只能打开非 tabBar 页面。
--  `switchTab`  只能打开  `tabBar`  页面。
-- 不能在  `App.vue`  里面进行页面跳转
+  **注意**
+  -  `navigateTo` ,  `redirectTo`  只能打开非 tabBar 页面。
+  -  `switchTab`  只能打开  `tabBar`  页面。
+  - 不能在  `App.vue`  里面进行页面跳转
 
 #### [`getcurrentpages`](https://uniapp.dcloud.io/api/window/window.html#getcurrentpages)
 获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
