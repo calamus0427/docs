@@ -336,8 +336,9 @@ export default { X };
 [wx.getMenuButtonBoundingClientRect()](https://developers.weixin.qq.com/miniprogram/dev/api/ui/menu/wx.getMenuButtonBoundingClientRect.html)
 获取菜单按钮（右上角胶囊按钮）的布局位置信息。坐标信息以屏幕左上角为原点。
 
-导航栏大概代码：
+![statusbar](https://cdn.calamus.xyz/uni/statusbar.png)
 
+导航栏大概代码：
 
 ```Vue
 <template>
@@ -497,6 +498,22 @@ export default  {
 ```
 
 ### trtc音视频组件
+uni各平台兼容情况：
+
+![live-pusher](https://cdn.calamus.xyz/uni/live-pusher-wx.jpeg)
+
+安装：
+```bash
+# tim install
+npm install tim-wx-sdk
+# trtc install
+npm install trtc-wx-sdk
+```
+
+[trtc小程序接入](https://cloud.tencent.com/document/product/647/32183)
+
+[im小程序接入](https://cloud.tencent.com/document/product/269/37413)
+
 
 ```vue 
 <template>
@@ -645,9 +662,22 @@ export default {
 ## 遇到的问题
 ### 原生组件异步渲染
 [uni.createCameraContext()](https://uniapp.dcloud.io/api/media/camera-context.html#createcameracontext)
-camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord
-解决思路1: position:fixed;left:100%;
-解决思路2：camera相机初始化完成时binddone中执行后续操作
+
+camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord会失败（尤其在切屏再重试时很容易出错）
+
+解决方案；
+1. 使用定位：position:fixed;left:100%;
+2. camera相机初始化完成时initdone中执行后续操作
+
+```html
+ <camera  
+  device-position="front" 
+  flash="off" 
+  @error="ocrCameraError"  
+  @stop="bindstop" 
+  @done="handleShowCamera""
+ />
+```
 
 ![camera-bind.jpeg](https://cdn.calamus.xyz/uni/camera-bind.jpeg)
 

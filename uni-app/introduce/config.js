@@ -38,6 +38,7 @@ docute.init({
                 {title: '自定义导航', path: '/practice?id=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA'},
                 {title: 'message全局', path: '/practice?id=message全局'},
                 {title: 'globalconfig自定义配置', path: '/practice?id=globalconfig自定义配置'},
+                {title: 'trtc音视频组件', path: '/practice?id=trtc%E9%9F%B3%E8%A7%86%E9%A2%91%E7%BB%84%E4%BB%B6'}
                 ]},
                 {
                   title: "遇到的问题",
