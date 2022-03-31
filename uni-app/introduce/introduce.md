@@ -274,8 +274,7 @@ globalData绑定到页面，可在页面的onshow声明周期里进行变量重�
 
 #### 挂载在uni上
 实现：同挂在wx上一样，common方法， 挂在uni上，在需要的页面调用
-存在的问题：多次调用有缓存
-解决： 开始验证时初始化
+（多次调用记得初始化某些需要的值）
 
 ```javascript
 const setCmsConfig = (config) => {
@@ -291,26 +290,28 @@ const setCmsConfig = (config) => {
 迁移到 vue3，必须适配的几个点，vue2 项目才能正常运行在 vue3 上。
 但如果用了vue3的语法，没办法在vue2中实现。
 
+[`Vue Demi`](https://github.com/vueuse/vue-demi?ref=madewithvuejs.com)构建同时兼容Vue2和Vue3的组件库
+
 1.  模块导入导出
 
-```javascript
-// 导入
-// 之前 - Vue 2, 使用 commonJS
-var utils = require("../../../common/util.js");
-// 之后 - Vue 3， 只支持 ES6 模块
-import utils from "../../../common/util.js";
-// 导出
-// 之前 - Vue 2, 依赖如使用 commonJS 方式导出
-module.exports.X = X;
+  ```javascript
+  // 导入
+  // 之前 - Vue 2, 使用 commonJS
+  var utils = require("../../../common/util.js");
+  // 之后 - Vue 3， 只支持 ES6 模块
+  import utils from "../../../common/util.js";
+  // 导出
+  // 之前 - Vue 2, 依赖如使用 commonJS 方式导出
+  module.exports.X = X;
 
-// 之后 - Vue 3， 只支持 ES6 模块
-export default { X };
-```
+  // 之后 - Vue 3， 只支持 ES6 模块
+  export default { X };
+  ```
 
 2. 建议避免在同一元素上同时使用 v-if 与 v-for
 3. 生命周期的变更
 
-![vue23.png](https://cdn.calamus.xyz/uni/vue23.png)
+  ![vue23.png](https://cdn.calamus.xyz/uni/vue23.png)
 
 4. Vue3 将不支持  `slot="xxx"`  的用法 ，使用  `v-slot:xxx`  用法。
 
@@ -662,8 +663,11 @@ export default {
 ## 遇到的问题
 ### 原生组件异步渲染
 [uni.createCameraContext()](https://uniapp.dcloud.io/api/media/camera-context.html#createcameracontext)
+创建并返回 camera 组件的上下文 cameraContext 对象。
+cameraContext.startRecord
+cameraContext.stopRecord
 
-camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord会失败（尤其在切屏再重试时很容易出错）
+- camera组件用v-if控制了显隐，显示时异步加载未完成就执行startRecord会失败（尤其在切屏再重试时很容易出错）
 
 解决方案；
 1. 使用定位：position:fixed;left:100%;
@@ -675,12 +679,15 @@ camera组件用v-if控制了显隐，显示时异步加载未完成就执行star
   flash="off" 
   @error="ocrCameraError"  
   @stop="bindstop" 
-  @done="handleShowCamera""
+  @initdone="handleCameraDone"
  />
 ```
 
 ![camera-bind.jpeg](https://cdn.calamus.xyz/uni/camera-bind.jpeg)
 
+- stopRecord无效的问题
+startRecord这个api还没有成功返回，如果接着又调stopRecord这个api就会出现没反应。
+解决：确保startRecord 返回success了之后再调用停止录像
 ### 页面栈10次跳转，超出了将无法打开其他页面
 #### 页面跳转方法
 - `uni.navigateTo` 保留当前页面，跳转到应用内的某个页面
