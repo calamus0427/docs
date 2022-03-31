@@ -689,6 +689,7 @@ cameraContext.stopRecord
 - stopRecord无效的问题
 startRecord这个api还没有成功返回，如果接着又调stopRecord这个api就会出现没反应。
 解决：确保startRecord 返回success了之后再调用停止录像
+
 ### 页面栈10次跳转，超出了将无法打开其他页面
 #### 页面跳转方法
 - `uni.navigateTo` 保留当前页面，跳转到应用内的某个页面
