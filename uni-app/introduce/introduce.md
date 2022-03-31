@@ -226,10 +226,6 @@ npm run build:mp-weixin
 uni-app非H5端，不支持使用svg标签。但image标签支持svg图片。
 
 ### 状态管理
-1. 为什么需要做数据状态管理？
-多页面切换，有一些公共设置变量
-2. 最终方案
-挂载在uni变量上
 
 
 #### vuex
