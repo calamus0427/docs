@@ -25,6 +25,7 @@
 ### 条件编译
 uni-app能实现一套代码、多端运行，核心是通过编译器 + 运行时实现的
 通过[条件编译](https://uniapp.dcloud.io/tutorial/compiler.html)，将注释里面的代码编译到不同平台。
+
 以 #ifdef 或 #ifndef 加 %PLATFORM% 开头，以 #endif 结尾。
 
   ```
@@ -90,6 +91,7 @@ uni-app能实现一套代码、多端运行，核心是通过编译器 + 运行�
 [`uni_module`](https://uniapp.dcloud.net.cn/plugin/uni_modules.html#%E4%BB%80%E4%B9%88%E6%98%AF-uni-modules)
 uni-app的插件模块化规范，通常是对一组js sdk、组件、页面、uniCloud云函数、公共模块等的封装，用于嵌入到uni-app项目中使用，也支持直接封装为项目模板，也可以开发自己的插件使用。
 uni_module和node_module不太一样，支持云函数，有付费插件的版权保护。可在[插件市场](https://ext.dcloud.net.cn/)下载需要的插件，也可以自己开发通过Hbuilder发布到插件市场。
+
 `manifest.json`
 使用小程序[插件](https://uniapp.dcloud.net.cn/tutorial/mp-weixin-plugin.html)：
 
@@ -130,13 +132,14 @@ npm run build:mp-weixin
 │  └─pages           可复用的a组件
 │  │  ├─index
 │  │  │ └─index.vue       index页面
-├─static                本地静态资源
-├─uni_modules           uni插件。
-├─wxcomponents          存放小程序组件的目录
-├─main.js               Vue初始化入口文件
-├─App.vue               应用配置，用来配置App全局样式以及监听 应用生命周期
-├─manifest.json         配置应用名称、appid、logo、版本等打包信息，详见
-└─pages.json            配置页面路由、导航条、选项卡等页面类信息，详见  
+│  └─static                本地静态资源
+│  └─uni_modules           uni插件。
+│  └─wxcomponents          存放小程序组件的目录
+│  └─main.js               Vue初始化入口文件
+│  └─App.vue               应用配置，用来配置App全局样式以及监听 应用生命周期
+│  └─manifest.json         配置应用名称、appid、logo、版本等打包信息，详见
+│  └─pages.json            配置页面路由、导航条、选项卡等页面类信息，详见  
+└─package.json
 ```
 
 ### 两种启动方式的差异
@@ -228,14 +231,6 @@ uni-app非H5端，不支持使用svg标签。但image标签支持svg图片。
 2. 最终方案
 挂载在uni变量上
 
-####  Vue.prototype
-
-```javascript
-Vue.prototype.baseUrl = 'http://uniapp.dcloud.io'; 
-```
-
-缺点：需要客户引入，增加接入成本
-优点：全局调用更改方便
 
 #### vuex
 专为 Vue.js 应用程序开发的状态管理模式。
@@ -244,6 +239,16 @@ Vue.prototype.baseUrl = 'http://uniapp.dcloud.io';
 2.  接入成本高
 3.  没有那么多复杂的数据需要管理
 4.  如果客户没有使用vuex，需要install vuex，增加包体
+
+
+####  Vue.prototype
+
+```javascript
+Vue.prototype.baseUrl = 'http://uniapp.dcloud.io'; 
+```
+
+缺点：需要客户引入，增加接入成本
+优点：全局调用更改方便
 
 #### globalData
 小程序中有个globalData概念，可以在 App 上声明全局变量。 Vue 之前是没有这类概念的，但 uni-app 引入了globalData概念，并且在包括H5、App等平台都实现了。
